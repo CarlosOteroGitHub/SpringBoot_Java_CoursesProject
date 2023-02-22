@@ -1,0 +1,40 @@
+## YAML Template.
+---
+spring:
+    # NOMBRE DEL SERVICIO
+    application:
+        name: microservicio-respuestas
+    # CONFIGURACIÓN DE LA CONEXIÓN A LA BASE DE DATOS MONGODB.
+    data:
+        mongodb:
+            database: db_microservicio_respuestas
+            host: localhost
+            port: 27017
+            username: root
+    main:
+        allow-circular-references: true
+    
+# ESPECIFICACIÓN DEL PUERTO.
+server:
+    port: 8083
+       
+# CONFIGURACIÓN DE SWAGGER
+springdoc:
+    swagger-ui:
+        path: /swagger/index.html
+        enabled: true
+        
+# CONFIGURACIÓN DE EUREKA SERVER
+eureka:
+    instance:
+        instance-id: ${spring.application.name}:${server.port}
+    client:
+        serviceUrl:
+            defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+         
+# CONFIGURACIÓN PARA LA EXPOSICIÓN DE CONEXIONES.
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"

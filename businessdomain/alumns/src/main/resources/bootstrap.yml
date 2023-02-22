@@ -1,0 +1,64 @@
+## YAML Template.
+---
+spring:
+    # NOMBRE DEL SERVICIO
+    application:
+        name: microservicio-alumnos
+    # CONFIGURACIÓN DE LA CONEXIÓN A LA BASE DE DATOS POSTGRESQL.
+    datasource:
+        url: jdbc:postgresql://localhost:5432/db_microservicio_alumnos
+        username: postgres
+        password: 12345
+        driver-class-name: org.postgresql.Driver
+        generate-unique-name: false
+        # CONFIGURACIÓN PARA PROCESAR DATOS CON @Lob
+        hikari:
+            auto-commit: false
+    jpa:
+        show-sql: true
+        hibernate: 
+            ddl-auto: update
+        database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+        generate-ddl: true
+        properties:
+            hibernate:
+                jdbc:
+                    lob:
+                        non_contextual_creation: true
+    # CONFIGURACIÓN DEL BALANCEADOR DE CARGA.
+    cloud:
+        loadbalancer:
+            ribbon:
+                enabled: false
+
+# ESPECIFICACIÓN DEL PUERTO.
+server:
+    port: 8080
+    
+# CONFIGURACIÓN DE SWAGGER
+springdoc:
+    swagger-ui:
+        path: /swagger/index.html
+        enabled: true
+        
+# CONFIGURACIÓN DE SQL.
+logging:
+    level:
+        org:
+            hibernate:
+                SQL: debug
+        
+# CONFIGURACIÓN DE EUREKA SERVER
+eureka:
+    instance:
+        instance-id: ${spring.application.name}:${server.port}
+    client:
+        serviceUrl:
+            defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+            
+# CONFIGURACIÓN PARA LA EXPOSICIÓN DE CONEXIONES.
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"

@@ -1,0 +1,59 @@
+## YAML Template.
+---
+spring:
+    # NOMBRE DEL SERVICIO
+    application:
+        name: microservicio-gateway
+    cloud:
+        #CONFIGURACIÓN DEL BALANCEADOR DE CARGA.
+        loadbalancer:
+            ribbon:
+                enabled: false
+        #CONFIGURACIÓN DEL GATEWAY
+        gateway:
+            discovery:
+                locator:
+                    enabled: true
+                    lower-case-service-id: true
+            routes:
+                - id: microservicio-alumnos
+                  uri: lb://microservicio-alumnos
+                  predicates: Path=/gateway/api-alumno/**
+                  filters: StripPrefix=2
+                  
+                - id: microservicio-alumnos
+                  uri: lb://microservicio-alumnos
+                  predicates: Path=/gateway/api-sexo/**
+                  filters: StripPrefix=2
+                  
+                - id: microservicio-cursos
+                  uri: lb://microservicio-cursos
+                  predicates: Path=/gateway/api-curso/**
+                  filters: StripPrefix=2
+                  
+                - id: microservicio-examenes
+                  uri: lb://microservicio-examenes
+                  predicates: Path=/gateway/api-examen/**
+                  filters: StripPrefix=2
+                  
+                - id: microservicio-examenes
+                  uri: lb://microservicio-examenes
+                  predicates: Path=/gateway/api-pregunta/**
+                  filters: StripPrefix=2
+                  
+                - id: microservicio-examenes
+                  uri: lb://microservicio-examenes
+                  predicates: Path=/gateway/api-asignatura/**
+                  filters: StripPrefix=2
+    main:
+        web-application-type: reactive
+        
+# ESPECIFICACIÓN DEL PUERTO.
+server:
+    port: 8090
+
+# CONFIGURACIÓN DE EUREKA SERVER
+eureka:
+    client:
+        service-url:
+            defaultZone: http://localhost:8761/eureka

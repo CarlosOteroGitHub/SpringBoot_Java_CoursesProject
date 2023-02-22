@@ -1,0 +1,61 @@
+## YAML Template.
+---
+spring:
+    # NOMBRE DEL SERVICIO
+    application:
+        name: microservicio-cursos
+    # CONFIGURACIÓN DE LA CONEXIÓN A LA BASE DE DATOS MARIADB.
+    datasource:
+        url: jdbc:mysql://localhost:3306/db_microservicio_cursos
+        username: root
+        password: 12345
+        driver-class-name: com.mysql.jdbc.Driver
+        generate-unique-name: false
+    jpa:
+        show-sql: true
+        hibernate: 
+            ddl-auto: update
+        database-platform: org.hibernate.dialect.MariaDB103Dialect
+        generate-ddl: true
+    # CONFIGURACIÓN DEL BALANCEADOR DE CARGA.
+    cloud:
+        loadbalancer:
+            ribbon:
+                enabled: false
+                
+# ESPECIFICACIÓN DEL PUERTO.
+server:
+    port: 8081
+       
+# CONFIGURACIÓN DE SWAGGER
+springdoc:
+    swagger-ui:
+        path: /swagger/index.html
+        enabled: true
+        
+# CONFIGURACIÓN DE SQL
+logging:
+    level:
+        org:
+            hibernate:
+                SQL: debug
+                
+# CONFIGURACIÓN DE EUREKA SERVER
+eureka:
+    instance:
+        instance-id: ${spring.application.name}:${server.port}
+    client:
+        serviceUrl:
+            defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+         
+# ESPECIFICACIÓN DE VARIABLE TEST PARA COMPROBAR EL BALANCEADOR DE CARGA.
+config:
+    balanceador:
+        test: ${BALANCEADOR_TEST:balanceador del servicio cursos}
+       
+# CONFIGURACIÓN PARA LA EXPOSICIÓN DE CONEXIONES.
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"

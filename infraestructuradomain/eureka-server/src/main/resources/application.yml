@@ -1,0 +1,16 @@
+## YAML Template.
+---
+spring:
+    # NOMBRE DEL SERVICIO
+    application:
+        name: microservicio-eureka-server
+
+# ESPECIFICACIÓN DEL PUERTO.
+server:
+    port: 8761
+                
+# CONFIGURACIÓN DE EUREKA SERVER
+eureka:
+    client:
+        register-with-eureka: false
+        fetch-registry: false

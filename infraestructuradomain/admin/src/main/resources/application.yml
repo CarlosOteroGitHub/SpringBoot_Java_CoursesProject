@@ -1,0 +1,32 @@
+## YAML Template.
+---
+spring:
+    # NOMBRE DEL SERVICIO
+    application:
+        name: admin-server
+    
+# ESPECIFICACIÓN DEL PUERTO.
+server:
+    port: 8762
+
+# CONFIGURACIÓN DE EUREKA SERVER
+eureka:   
+    instance:
+        leaseRenewalIntervalInSeconds: 10
+        health-check-url-path: /actuator/health
+        metadata-map:
+            startup: ${random.int}
+    client:
+        registryFetchIntervalSeconds: 5
+        serviceUrl:
+            defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+
+# CONFIGURACIÓN PARA LA EXPOSICIÓN DE CONEXIONES.
+management: 
+    endpoints:
+        web:
+            exposure:
+                include: "*"  
+    endpoint:
+        health:
+            show-details: ALWAYS
