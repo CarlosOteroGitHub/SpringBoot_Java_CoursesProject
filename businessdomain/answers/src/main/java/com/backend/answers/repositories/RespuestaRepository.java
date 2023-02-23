@@ -1,9 +1,8 @@
 package com.backend.answers.repositories;
 
-import java.io.Serializable;
 import com.backend.answers.models.RespuestaModel;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface RespuestaRepository extends MongoRepository<RespuestaModel, Serializable>{
-
+public interface RespuestaRepository extends PagingAndSortingRepository<RespuestaModel, Long>{
+    
 }

@@ -3762,19 +3762,548 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8083/api/respuesta",
+									"raw": "http://localhost:8083/listar-respuestas",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8083",
 									"path": [
-										"api",
-										"respuesta"
+										"listar-respuestas"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Listar Respuestas 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8083/listar-respuestas",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8083",
+											"path": [
+												"listar-respuestas"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 22 Feb 2023 07:36:39 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"texto\": \"respuesta1\"\n    },\n    {\n        \"id\": 2,\n        \"texto\": \"respuesta2\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Agregar Respuesta",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"texto\": \"respuesta2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8083/agregar-respuesta",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"agregar-respuesta"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Agregar Respuesta 201",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"texto\": \"respuesta1\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8083/agregar-respuesta",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8083",
+											"path": [
+												"agregar-respuesta"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 22 Feb 2023 07:36:20 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"texto\": \"respuesta1\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Respuesta Template HTML",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/respuesta-template",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"respuesta-template"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Respuesta Template HTML",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8083/respuesta-template",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8083",
+											"path": [
+												"respuesta-template"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/html;charset=UTF-8"
+										},
+										{
+											"key": "Content-Language",
+											"value": "es-MX"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 22 Feb 2023 07:37:24 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "<!DOCTYPE HTML>\n<!--\r\nClick nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license\r\nClick nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template\r\n-->\n<html>\n    <head>\n        <meta charset=\"UTF-8\">\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n        <title>Spring Boot</title>\n    </head>\n    <body>\n        <h3>Microservicio - Respuesta</h3>\n    </body>\n</html>"
+								}
+							]
+						},
+						{
+							"name": "Detalle Respuesta",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/detalle-respuesta/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"detalle-respuesta",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Detalle Respuesta 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8083/detalle-respuesta/:id",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8083",
+											"path": [
+												"detalle-respuesta",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 22 Feb 2023 07:37:46 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 2,\n    \"texto\": \"respuesta2\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Listar Respuestas - Paginado",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/respuesta-page?page=0&size=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"respuesta-page"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Listar Respuestas - Paginado 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8083/respuesta-page?page=0&size=10",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8083",
+											"path": [
+												"respuesta-page"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Feb 2023 05:39:13 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"content\": [\n        {\n            \"id\": 2,\n            \"texto\": \"respuesta2\"\n        },\n        {\n            \"id\": 1,\n            \"texto\": \"respuesta21.2\"\n        }\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"empty\": true,\n            \"sorted\": false,\n            \"unsorted\": true\n        },\n        \"offset\": 0,\n        \"pageSize\": 10,\n        \"pageNumber\": 0,\n        \"unpaged\": false,\n        \"paged\": true\n    },\n    \"last\": true,\n    \"totalPages\": 1,\n    \"totalElements\": 2,\n    \"size\": 10,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": true,\n        \"sorted\": false,\n        \"unsorted\": true\n    },\n    \"first\": true,\n    \"numberOfElements\": 2,\n    \"empty\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "Actualizar Respuesta",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"texto\": \"respuesta21.2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8083/actualizar-respuesta/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"actualizar-respuesta",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Actualizar Respuesta 200",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"texto\": \"respuesta21.2\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8083/actualizar-respuesta/:id",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8083",
+											"path": [
+												"actualizar-respuesta",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 23 Feb 2023 05:38:54 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"texto\": \"respuesta21.2\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Eliminar Respuesta",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/eliminar-respuesta/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"eliminar-respuesta",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Eliminar Respuesta 200",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8083/eliminar-respuesta/:id",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8083",
+											"path": [
+												"eliminar-respuesta",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 23 Feb 2023 05:39:43 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
 						}
 					]
 				}
@@ -7578,7 +8107,590 @@
 				},
 				{
 					"name": "Microservicio Respuestas",
-					"item": []
+					"item": [
+						{
+							"name": "Respuestas",
+							"item": [
+								{
+									"name": "Listar Respuestas",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8090/gateway/api-respuesta/listar-respuestas",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8090",
+											"path": [
+												"gateway",
+												"api-respuesta",
+												"listar-respuestas"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Listar Respuestas 200",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8090/gateway/api-respuesta/listar-respuestas",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8090",
+													"path": [
+														"gateway",
+														"api-respuesta",
+														"listar-respuestas"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 23 Feb 2023 05:44:23 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "[\n    {\n        \"id\": 2,\n        \"texto\": \"respuesta2\"\n    }\n]"
+										}
+									]
+								},
+								{
+									"name": "Agregar Respuesta",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"texto\": \"respuesta4\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8090/gateway/api-respuesta/agregar-respuesta",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8090",
+											"path": [
+												"gateway",
+												"api-respuesta",
+												"agregar-respuesta"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Agregar Respuesta 201",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"texto\": \"respuesta4\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:8090/gateway/api-respuesta/agregar-respuesta",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8090",
+													"path": [
+														"gateway",
+														"api-respuesta",
+														"agregar-respuesta"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 23 Feb 2023 05:45:57 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"id\": 3,\n    \"texto\": \"respuesta4\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Respuesta Template HTML",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8090/gateway/api-respuesta/respuesta-template",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8090",
+											"path": [
+												"gateway",
+												"api-respuesta",
+												"respuesta-template"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Respuesta Template HTML 200",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8090/gateway/api-respuesta/respuesta-template",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8090",
+													"path": [
+														"gateway",
+														"api-respuesta",
+														"respuesta-template"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "html",
+											"header": [
+												{
+													"key": "Content-Language",
+													"value": "es-MX"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 23 Feb 2023 05:45:36 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "text/html;charset=UTF-8"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "<!DOCTYPE HTML>\n<!--\r\nClick nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license\r\nClick nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template\r\n-->\n<html>\n    <head>\n        <meta charset=\"UTF-8\">\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n        <title>Spring Boot</title>\n    </head>\n    <body>\n        <h3>Microservicio - Respuesta</h3>\n    </body>\n</html>"
+										}
+									]
+								},
+								{
+									"name": "Detalle Respuesta",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8090/gateway/api-respuesta/detalle-respuesta/:id",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8090",
+											"path": [
+												"gateway",
+												"api-respuesta",
+												"detalle-respuesta",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Detalle Respuesta 200",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8090/gateway/api-respuesta/detalle-respuesta/:id",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8090",
+													"path": [
+														"gateway",
+														"api-respuesta",
+														"detalle-respuesta",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "2"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 23 Feb 2023 05:45:09 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"id\": 2,\n    \"texto\": \"respuesta2\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Listar Respuestas - Paginado",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8090/gateway/api-respuesta/respuesta-page?page=0&size=10",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8090",
+											"path": [
+												"gateway",
+												"api-respuesta",
+												"respuesta-page"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Listar Respuestas - Paginado 200",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8090/gateway/api-respuesta/respuesta-page?page=0&size=10",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8090",
+													"path": [
+														"gateway",
+														"api-respuesta",
+														"respuesta-page"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "10"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 23 Feb 2023 05:45:23 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"content\": [\n        {\n            \"id\": 2,\n            \"texto\": \"respuesta2\"\n        }\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"empty\": true,\n            \"sorted\": false,\n            \"unsorted\": true\n        },\n        \"offset\": 0,\n        \"pageSize\": 10,\n        \"pageNumber\": 0,\n        \"unpaged\": false,\n        \"paged\": true\n    },\n    \"last\": true,\n    \"totalPages\": 1,\n    \"totalElements\": 1,\n    \"size\": 10,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": true,\n        \"sorted\": false,\n        \"unsorted\": true\n    },\n    \"first\": true,\n    \"numberOfElements\": 1,\n    \"empty\": false\n}"
+										}
+									]
+								},
+								{
+									"name": "Actualizar Respuesta",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"texto\": \"respuesta3.1\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8090/gateway/api-respuesta/actualizar-respuesta/:id",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8090",
+											"path": [
+												"gateway",
+												"api-respuesta",
+												"actualizar-respuesta",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Actualizar Respuesta 200",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"texto\": \"respuesta3.1\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:8090/gateway/api-respuesta/actualizar-respuesta/:id",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8090",
+													"path": [
+														"gateway",
+														"api-respuesta",
+														"actualizar-respuesta",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "3"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 23 Feb 2023 05:46:15 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"id\": 3,\n    \"texto\": \"respuesta3.1\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Eliminar Respuesta",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8090/gateway/api-respuesta/eliminar-respuesta/:id",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8090",
+											"path": [
+												"gateway",
+												"api-respuesta",
+												"eliminar-respuesta",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Eliminar Respuesta 200",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8090/gateway/api-respuesta/eliminar-respuesta/:id",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8090",
+													"path": [
+														"gateway",
+														"api-respuesta",
+														"eliminar-respuesta",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "3"
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "plain",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 23 Feb 2023 05:46:39 GMT"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": null
+										}
+									]
+								}
+							]
+						}
+					]
 				}
 			]
 		}

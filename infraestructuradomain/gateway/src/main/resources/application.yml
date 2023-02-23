@@ -45,6 +45,11 @@ spring:
                   uri: lb://microservicio-examenes
                   predicates: Path=/gateway/api-asignatura/**
                   filters: StripPrefix=2
+                  
+                - id: microservicio-respuestas
+                  uri: lb://microservicio-respuestas
+                  predicates: Path=/gateway/api-respuesta/**
+                  filters: StripPrefix=2
     main:
         web-application-type: reactive
         

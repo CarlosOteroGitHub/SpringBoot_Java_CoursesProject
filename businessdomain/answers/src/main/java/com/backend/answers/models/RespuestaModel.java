@@ -1,21 +1,28 @@
 package com.backend.answers.models;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import lombok.Data;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.index.Indexed;
 
+@Entity
 @Data
-@Document(collection = "respuestas")
+@Table(name = "respuestas")
 public class RespuestaModel implements Serializable {
     
     @Id
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     private Long id;
     
-    @NotNull
-    @Indexed(unique = true)
+    @Column(length = 50, unique = false, nullable = false)
+    @NotEmpty
+    @Size(min = 4, max = 30)
     private String texto;
 }

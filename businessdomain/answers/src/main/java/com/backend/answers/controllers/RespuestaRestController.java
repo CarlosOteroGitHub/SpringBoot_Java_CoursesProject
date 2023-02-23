@@ -4,6 +4,7 @@ import com.backend.answers.models.RespuestaModel;
 import com.backend.answers.services.RespuestaService;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -20,24 +21,29 @@ public class RespuestaRestController {
     @Autowired
     RespuestaService respuestaService;
     
-    @RequestMapping(value = "/respuesta", method = RequestMethod.GET)
+    @RequestMapping(value = "/respuesta-template", method = RequestMethod.GET)
     public ModelAndView respuesta(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("respuesta.html");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/api/respuesta", method = RequestMethod.GET)
+    @RequestMapping(value = "/listar-respuestas", method = RequestMethod.GET)
     public ResponseEntity<?> get() {
         return ResponseEntity.ok().body(respuestaService.findAll());
     }
+    
+    @RequestMapping(value = "/respuesta-page", method = RequestMethod.GET)
+    public ResponseEntity<?> get_page(Pageable pageable) {
+        return ResponseEntity.ok().body(respuestaService.findAll(pageable));
+    }
 
-    @RequestMapping(value = "/api/respuesta", method = RequestMethod.POST)
+    @RequestMapping(value = "/agregar-respuesta", method = RequestMethod.POST)
     public ResponseEntity<?> post(@RequestBody RespuestaModel respuestaModel) {
         return ResponseEntity.status(HttpStatus.CREATED).body(respuestaService.save(respuestaModel));
     }
 
-    @RequestMapping(value = "/api/respuesta/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/detalle-respuesta/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getID(@PathVariable long id) {
         Optional<RespuestaModel> optional = respuestaService.findById(id);
         if (optional.isEmpty()) {
@@ -46,7 +52,7 @@ public class RespuestaRestController {
         return ResponseEntity.ok(optional.get());
     }
 
-    @RequestMapping(value = "/api/respuesta/{id}", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/actualizar-respuesta/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<?> patch(@PathVariable long id, @RequestBody RespuestaModel respuestaModel) {
         Optional<RespuestaModel> optional = respuestaService.findById(id);
         if (optional.isEmpty()) {
@@ -59,7 +65,7 @@ public class RespuestaRestController {
         return ResponseEntity.status(HttpStatus.CREATED).body(respuestaService.save(respuestaModel_db));
     }
 
-    @RequestMapping(value = "/api/respuesta/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/eliminar-respuesta/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable long id) {
         respuestaService.deleteById(id);
         return ResponseEntity.noContent().build();
