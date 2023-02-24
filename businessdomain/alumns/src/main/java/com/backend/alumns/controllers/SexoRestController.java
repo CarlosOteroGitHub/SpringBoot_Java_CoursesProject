@@ -3,6 +3,7 @@ package com.backend.alumns.controllers;
 import com.backend.alumns.auxiliar.Auxiliar;
 import com.backend.alumns.models.SexoModel;
 import com.backend.alumns.services.SexoService;
+import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +34,29 @@ public class SexoRestController {
 
     @RequestMapping(value = "/listar-sexo", method = RequestMethod.GET)
     public ResponseEntity<?> get() {
+        List<SexoModel> lista = (List<SexoModel>) sexoService.findAll();
+        if(lista == null || lista.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok().body(sexoService.findAll());
     }
     
     @RequestMapping(value = "/sexo-page", method = RequestMethod.GET)
     public ResponseEntity<?> get_page(Pageable pageable) {
+        List<SexoModel> lista = (List<SexoModel>) sexoService.findAll();
+        if(lista == null || lista.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok().body(sexoService.findAll(pageable));
+    }
+    
+    @RequestMapping(value = "/detalle-sexo/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getID(@PathVariable long id) {
+        Optional<SexoModel> optional = sexoService.findById(id);
+        if (optional == null || optional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(optional.get());
     }
 
     @RequestMapping(value = "/agregar-sexo", method = RequestMethod.POST)
@@ -49,35 +67,31 @@ public class SexoRestController {
         return ResponseEntity.status(HttpStatus.CREATED).body(sexoService.save(sexoModel));
     }
 
-    @RequestMapping(value = "/detalle-sexo/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getID(@PathVariable long id) {
-        Optional<SexoModel> optional = sexoService.findById(id);
-        if (optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(optional.get());
-    }
-
     @RequestMapping(value = "/actualizar-sexo/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<?> patch(@Valid @RequestBody SexoModel sexoModel, BindingResult result, @PathVariable long id) {
-        if(result.hasErrors()){
-            return new Auxiliar().mensajes_error(result);
+        Optional<SexoModel> optional = sexoService.findById(id);
+        if (optional == null || optional.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
         
-        Optional<SexoModel> optional = sexoService.findById(id);
-        if (optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        if(result.hasErrors()){
+            return new Auxiliar().mensajes_error(result);
         }
 
         SexoModel sexoModel_db = optional.get();
         sexoModel_db.setNombre(sexoModel.getNombre());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(sexoService.save(sexoModel_db));
+        return ResponseEntity.status(HttpStatus.OK).body(sexoService.save(sexoModel_db));
     }
 
     @RequestMapping(value = "/eliminar-sexo/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable long id) {
+        Optional<SexoModel> optional = sexoService.findById(id);
+        if (optional == null || optional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        
         sexoService.deleteById(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 }

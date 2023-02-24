@@ -2,6 +2,7 @@ package com.backend.answers.controllers;
 
 import com.backend.answers.models.RespuestaModel;
 import com.backend.answers.services.RespuestaService;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -30,12 +31,29 @@ public class RespuestaRestController {
 
     @RequestMapping(value = "/listar-respuestas", method = RequestMethod.GET)
     public ResponseEntity<?> get() {
+        List<RespuestaModel> lista = (List<RespuestaModel>) respuestaService.findAll();
+        if(lista == null || lista.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok().body(respuestaService.findAll());
     }
-    
+
     @RequestMapping(value = "/respuesta-page", method = RequestMethod.GET)
     public ResponseEntity<?> get_page(Pageable pageable) {
+        List<RespuestaModel> lista = (List<RespuestaModel>) respuestaService.findAll();
+        if(lista == null || lista.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok().body(respuestaService.findAll(pageable));
+    }
+    
+    @RequestMapping(value = "/detalle-respuesta/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getID(@PathVariable long id) {
+        Optional<RespuestaModel> optional = respuestaService.findById(id);
+        if (optional == null || optional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(optional.get());
     }
 
     @RequestMapping(value = "/agregar-respuesta", method = RequestMethod.POST)
@@ -43,31 +61,27 @@ public class RespuestaRestController {
         return ResponseEntity.status(HttpStatus.CREATED).body(respuestaService.save(respuestaModel));
     }
 
-    @RequestMapping(value = "/detalle-respuesta/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getID(@PathVariable long id) {
-        Optional<RespuestaModel> optional = respuestaService.findById(id);
-        if (optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(optional.get());
-    }
-
     @RequestMapping(value = "/actualizar-respuesta/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<?> patch(@PathVariable long id, @RequestBody RespuestaModel respuestaModel) {
         Optional<RespuestaModel> optional = respuestaService.findById(id);
-        if (optional.isEmpty()) {
+        if (optional == null || optional.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
         RespuestaModel respuestaModel_db = optional.get();
         respuestaModel_db.setTexto(respuestaModel.getTexto());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(respuestaService.save(respuestaModel_db));
+        return ResponseEntity.status(HttpStatus.OK).body(respuestaService.save(respuestaModel_db));
     }
 
     @RequestMapping(value = "/eliminar-respuesta/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable long id) {
+        Optional<RespuestaModel> optional = respuestaService.findById(id);
+        if (optional == null || optional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        
         respuestaService.deleteById(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 }

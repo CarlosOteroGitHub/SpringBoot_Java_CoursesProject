@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.backend.alumns.auxiliar.Auxiliar;
 import java.io.IOException;
+import java.util.List;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Pageable;
@@ -39,12 +40,29 @@ public class AlumnoRestController {
 
     @RequestMapping(value = "/listar-alumnos", method = RequestMethod.GET)
     public ResponseEntity<?> get() {
+        List<AlumnoModel> lista = (List<AlumnoModel>) alumnoService.findAll();
+        if(lista == null || lista.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok().body(alumnoService.findAll());
     }
 
     @RequestMapping(value = "/alumno-page", method = RequestMethod.GET)
     public ResponseEntity<?> get_page(Pageable pageable) {
+        List<AlumnoModel> lista = (List<AlumnoModel>) alumnoService.findAll();
+        if(lista == null || lista.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok().body(alumnoService.findAll(pageable));
+    }
+    
+    @RequestMapping(value = "/detalle-alumno/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getID(@PathVariable long id) {
+        Optional<AlumnoModel> optional = alumnoService.findById(id);
+        if (optional == null || optional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(optional.get());
     }
 
     @RequestMapping(value = "/detalle-alumno-archivo/{id}", method = RequestMethod.GET)
@@ -74,49 +92,42 @@ public class AlumnoRestController {
         return this.post(alumnoModel, result);
     }
 
-    @RequestMapping(value = "/detalle-alumno/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getID(@PathVariable long id) {
-        Optional<AlumnoModel> optional = alumnoService.findById(id);
-        if (optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(optional.get());
-    }
-
     @RequestMapping(value = "/actualizar-alumno/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> put(@Valid @RequestBody AlumnoModel alumnoModel, BindingResult result, @PathVariable long id) {
+        Optional<AlumnoModel> optional = alumnoService.findById(id);
+        if (optional == null || optional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        
         if (result.hasErrors()) {
             return new Auxiliar().mensajes_error(result);
-        }
-
-        Optional<AlumnoModel> optional = alumnoService.findById(id);
-        if (optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
         }
 
         AlumnoModel alumnoModel_db = optional.get();
         alumnoModel_db.setNombre(alumnoModel.getNombre());
         alumnoModel_db.setApellido(alumnoModel.getApellido());
         alumnoModel_db.setEmail(alumnoModel.getEmail());
+        alumnoModel_db.setSexo(alumnoModel.getSexo());
 
         return ResponseEntity.status(HttpStatus.OK).body(alumnoService.save(alumnoModel_db));
     }
 
     @RequestMapping(value = "/actualizar-archivo-alumno/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> put_archivo(@Valid AlumnoModel alumnoModel, BindingResult result, @PathVariable long id, @RequestParam MultipartFile archivo) throws IOException {
+        Optional<AlumnoModel> optional = alumnoService.findById(id);
+        if (optional == null || optional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        
         if (result.hasErrors()) {
             return new Auxiliar().mensajes_error(result);
-        }
-
-        Optional<AlumnoModel> optional = alumnoService.findById(id);
-        if (optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
         }
 
         AlumnoModel alumnoModel_db = optional.get();
         alumnoModel_db.setNombre(alumnoModel.getNombre());
         alumnoModel_db.setApellido(alumnoModel.getApellido());
         alumnoModel_db.setEmail(alumnoModel.getEmail());
+        alumnoModel_db.setSexo(alumnoModel.getSexo());
 
         if (!archivo.isEmpty()) {
             alumnoModel.setFoto(archivo.getBytes());
@@ -127,7 +138,12 @@ public class AlumnoRestController {
 
     @RequestMapping(value = "/eliminar-alumno/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable long id) {
+        Optional<AlumnoModel> optional = alumnoService.findById(id);
+        if (optional == null || optional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        
         alumnoService.deleteById(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(optional.get());
     }
 }
