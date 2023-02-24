@@ -65,6 +65,11 @@ public class CursoRestController {
         }
         return ResponseEntity.ok(optional.get());
     }
+    
+    @RequestMapping(value = "/buscar-curso/{nombre}", method = RequestMethod.GET)
+    public ResponseEntity<?> getNombre(@PathVariable String nombre) {
+        return ResponseEntity.ok(cursoService.findByNombre(nombre));
+    }
 
     @RequestMapping(value = "/actualizar-curso/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<?> patch(@PathVariable long id, @RequestBody CursoModel cursoModel) {
