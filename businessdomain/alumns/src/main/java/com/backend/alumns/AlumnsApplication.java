@@ -21,7 +21,8 @@ public class AlumnsApplication {
         return new OpenAPI()
                 .components(new Components())
                 .info(new Info()
-                        .title("Alumns API")
+                        .title("Microservicio Alumnos")
+                        .description("Microservicio que Administra las API´s de los Alumnos")
                         .version("1.0.0")
                 );
     }
