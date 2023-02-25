@@ -1,5 +1,6 @@
 package com.backend.alumns.controllers;
 
+import com.backend.alumns.auxiliar.ApiExceptionHandler;
 import com.backend.alumns.auxiliar.Auxiliar;
 import com.backend.alumns.models.SexoModel;
 import com.backend.alumns.services.SexoService;
@@ -52,9 +53,12 @@ public class SexoRestController {
     
     @RequestMapping(value = "/detalle-sexo/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getID(@PathVariable long id) {
-        Optional<SexoModel> optional = sexoService.findById(id);
-        if (optional == null || optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        Optional<SexoModel> optional;
+        try {
+            optional = sexoService.findById(id);
+            if (optional == null || optional.isEmpty());
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }
@@ -86,12 +90,13 @@ public class SexoRestController {
 
     @RequestMapping(value = "/eliminar-sexo/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable long id) {
-        Optional<SexoModel> optional = sexoService.findById(id);
-        if (optional == null || optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        try {
+            Optional<SexoModel> optional = sexoService.findById(id);
+            if (optional == null || optional.isEmpty());
+            sexoService.deleteById(id);
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
-        
-        sexoService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 }

@@ -1,5 +1,6 @@
 package com.backend.alumns.controllers;
 
+import com.backend.alumns.auxiliar.ApiExceptionHandler;
 import com.backend.alumns.models.AlumnoModel;
 import com.backend.alumns.services.AlumnoService;
 import java.util.Optional;
@@ -138,12 +139,14 @@ public class AlumnoRestController {
 
     @RequestMapping(value = "/eliminar-alumno/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable long id) {
-        Optional<AlumnoModel> optional = alumnoService.findById(id);
-        if (optional == null || optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        Optional<AlumnoModel> optional;
+        try {
+            optional = alumnoService.findById(id);
+            if (optional == null || optional.isEmpty());
+            alumnoService.deleteById(id);
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
-        
-        alumnoService.deleteById(id);
         return ResponseEntity.ok(optional.get());
     }
 }

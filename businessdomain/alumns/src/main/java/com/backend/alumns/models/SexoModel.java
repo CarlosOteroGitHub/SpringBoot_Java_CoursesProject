@@ -1,6 +1,7 @@
 package com.backend.alumns.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -18,15 +19,18 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "sexo")
+@Schema(name="SexoModel", description = "Entidad que representa los tipos de sexo")
 public class SexoModel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
+    @Schema(name="id", required = true, example = "1", description = "Define el identificador del registro")
     private Long id;
 
     @Column(length = 20, unique = true, nullable = false)
     @NotEmpty
+    @Schema(name="nombre", required = true, example = "Masculino/Femenino", description = "Define el nombre del sexo")
     private String nombre;
     
     @JsonIgnoreProperties(value = {"sexo"}, allowSetters = true)
