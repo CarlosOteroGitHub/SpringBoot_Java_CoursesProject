@@ -3,7 +3,7 @@ package com.backend.courses.services;
 import com.backend.courses.auxiliar.ServiceImp;
 import com.backend.courses.models.CursoModel;
 import com.backend.courses.repositories.CursoRepository;
-import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +12,7 @@ public class CursoService extends ServiceImp<CursoModel, CursoRepository> implem
 
     @Override
     @Transactional(readOnly = true)
-    public List<CursoModel> findByNombre(String nombre) {
+    public Optional<CursoModel> findByNombre(String nombre) {
         return repository.findByNombre(nombre);
     }
 }

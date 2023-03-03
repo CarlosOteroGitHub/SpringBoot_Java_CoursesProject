@@ -2,9 +2,9 @@ package com.backend.courses.services;
 
 import com.backend.courses.auxiliar.IService;
 import com.backend.courses.models.CursoModel;
-import java.util.List;
+import java.util.Optional;
 
 public interface ICursoService extends IService<CursoModel>{
     
-    public List<CursoModel> findByNombre(String nombre);
+    public Optional<CursoModel> findByNombre(String nombre);
 }

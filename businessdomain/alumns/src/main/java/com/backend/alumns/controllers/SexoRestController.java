@@ -31,7 +31,7 @@ public class SexoRestController {
     @Autowired
     SexoService sexoService;
     
-    @Operation(description = "API del Sexo Template", summary = "Retorna el Template HTML del Servicio Sexo")
+    @Operation(summary = "Retorna el Template HTML del Servicio", description = "API para Retornar el Template del Servicio Sexo")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK")
     })
@@ -42,7 +42,7 @@ public class SexoRestController {
         return modelAndView;
     }
 
-    @Operation(description = "API del Listado de Sexo", summary = "Retorna el Listado del Servicio Sexo")
+    @Operation(summary = "Retorna un Listado de Elementos", description = "API para Retornar el Listado de Elementos del Servicio Sexo")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
         @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
@@ -56,7 +56,7 @@ public class SexoRestController {
         return ResponseEntity.ok().body(sexoService.findAll());
     }
     
-    @Operation(description = "API del Listado Paginado de Sexo", summary = "Retorna el Listado Paginado del Servicio Sexo")
+    @Operation(summary = "Retorna un Listado de Elementos con Paginación", description = "API para Retornar el Listado de Elementos con Paginación del Servicio Sexo")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
         @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
@@ -70,10 +70,10 @@ public class SexoRestController {
         return ResponseEntity.ok().body(sexoService.findAll(pageable));
     }
     
-    @Operation(description = "API del Detalle de Sexo", summary = "Retorna el Detalle del Servicio Sexo")
+    @Operation(summary = "Retorna el Detalle de un Elemento por ID", description = "API para Retornar el Detalle de un Elemento por ID del Servicio Sexo")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
-        @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
+        @ApiResponse(responseCode = "404", description = "HTTP Status - NotFound")
     })
     @RequestMapping(value = "/detalle-sexo/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getID(@PathVariable long id) {
@@ -87,7 +87,7 @@ public class SexoRestController {
         return ResponseEntity.ok(optional.get());
     }
 
-    @Operation(description = "API para Agregar un Registro de Sexo", summary = "Agrega un Registro al Servicio Sexo")
+    @Operation(summary = "Agrega un Nuevo Elemento", description = "API para Agregar un Nuevo Elemento al Servicio Sexo")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK")
     })
@@ -99,10 +99,10 @@ public class SexoRestController {
         return ResponseEntity.status(HttpStatus.CREATED).body(sexoService.save(sexoModel));
     }
 
-    @Operation(description = "API para Actualizar un Registro de Sexo", summary = "Actualiza un Registro al Servicio Sexo")
+    @Operation(summary = "Actualiza un Elemento Existente", description = "API para Actualizar un Elemento Existente en el Servicio Sexo")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
-        @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
+        @ApiResponse(responseCode = "404", description = "HTTP Status - NotFound")
     })
     @RequestMapping(value = "/actualizar-sexo/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<?> patch(@Valid @RequestBody SexoModel sexoModel, BindingResult result, @PathVariable long id) {
@@ -121,10 +121,10 @@ public class SexoRestController {
         return ResponseEntity.status(HttpStatus.OK).body(sexoService.save(sexoModel_db));
     }
 
-    @Operation(description = "API para Eliminar un Registro de Sexo", summary = "Elimina un Registro al Servicio Sexo")
+    @Operation(summary = "Elimina un Elemento Existente", description = "API para Eliminar un Elemento Existente en el Servicio Sexo")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
-        @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
+        @ApiResponse(responseCode = "404", description = "HTTP Status - NotFound")
     })
     @RequestMapping(value = "/eliminar-sexo/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable long id) {

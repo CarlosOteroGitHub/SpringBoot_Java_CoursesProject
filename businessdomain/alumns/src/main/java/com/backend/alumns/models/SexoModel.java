@@ -19,13 +19,13 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "sexo")
-@Schema(name="SexoModel", description = "Entidad que representa los tipos de sexo")
+@Schema(name="SexoModel", description = "Entidad de base de datos que representa los tipos de sexo")
 public class SexoModel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    @Schema(name="id", required = true, example = "1", description = "Define el identificador del registro")
+    @Schema(name="id", required = true, example = "1", description = "Define el identificador del registro del sexo")
     private Long id;
 
     @Column(length = 20, unique = true, nullable = false)

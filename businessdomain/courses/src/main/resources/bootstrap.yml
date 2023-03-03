@@ -22,10 +22,16 @@ spring:
         loadbalancer:
             ribbon:
                 enabled: false
+    # CONFIGURACIÓN DE LA SEGURIDAD.
+    security:
+        user:
+            name: backend
+            password: 12345
+            roles: admin
                 
 # ESPECIFICACIÓN DEL PUERTO.
 server:
-    port: 8081
+    port: 0
        
 # CONFIGURACIÓN DE SWAGGER
 springdoc:

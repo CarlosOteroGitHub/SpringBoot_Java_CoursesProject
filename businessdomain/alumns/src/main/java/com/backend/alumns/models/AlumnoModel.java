@@ -26,13 +26,13 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "alumnos")
-@Schema(name="AlumnoModel", description = "Entidad que almacena los alumnos")
+@Schema(name="AlumnoModel", description = "Entidad de base de datos que representa los alumnos")
 public class AlumnoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    @Schema(name="id", required = true, example = "1", description = "Define el identificador del registro")
+    @Schema(name="id", required = true, example = "1", description = "Define el identificador del registro del alumno")
     private Long id;
 
     @Column(length = 50, unique = false, nullable = false)
@@ -67,7 +67,7 @@ public class AlumnoModel {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sexo_id")
     @NotNull
-    @Schema(name="sexo", required = true, example = "Masculino/Femenino", description = "Define el sexo del alumno")
+    @Schema(name="sexo", required = true, example = "Masculino/Femenino", description = "Define la relación entre el Alumno - Sexo")
     private SexoModel sexo;
 
     @PrePersist
