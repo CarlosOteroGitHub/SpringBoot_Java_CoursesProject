@@ -27,12 +27,18 @@ spring:
         loadbalancer:
             ribbon:
                 enabled: false
+    # CONFIGURACIÓN DE LA SEGURIDAD.
+    security:
+        user:
+            name: backend
+            password: 12345
+            roles: admin
     main:
         allow-circular-references: true
     
 # ESPECIFICACIÓN DEL PUERTO.
 server:
-    port: 8083
+    port: 0
        
 # CONFIGURACIÓN DE SWAGGER
 springdoc:

@@ -22,6 +22,12 @@ spring:
         loadbalancer:
             ribbon:
                 enabled: false
+    # CONFIGURACIÓN DE LA SEGURIDAD.
+    security:
+        user:
+            name: backend
+            password: 12345
+            roles: admin
     # CONFIGURACIÓN DEL MODELO.
     jackson:
         serialization:
@@ -29,7 +35,7 @@ spring:
         
 # ESPECIFICACIÓN DEL PUERTO.
 server:
-    port: 8082
+    port: 0
        
 # CONFIGURACIÓN DE SWAGGER
 springdoc:

@@ -14,5 +14,4 @@ public class Auxiliar {
         });
         return ResponseEntity.badRequest().body(errores);
     }
-    
 }

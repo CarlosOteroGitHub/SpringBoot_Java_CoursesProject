@@ -1,12 +1,15 @@
 package com.backend.exams;
 
-import org.springdoc.core.GroupedOpenApi;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @EnableEurekaClient
 public class ExamsApplication {
 
@@ -15,11 +18,14 @@ public class ExamsApplication {
     }
 
     @Bean
-    public GroupedOpenApi publicApi() {
-        return GroupedOpenApi.builder()
-                .group("springshop-public")
-                .packagesToScan("com.backend")
-                .build();
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .components(new Components())
+                .info(new Info()
+                        .title("Microservicio Examenes")
+                        .description("Microservicio que Administra las API´s de los Examanes")
+                        .version("1.0.0")
+                );
     }
 }
 

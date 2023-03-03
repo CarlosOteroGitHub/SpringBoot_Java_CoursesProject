@@ -1,6 +1,7 @@
 package com.backend.exams.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,28 +27,34 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "examenes")
+@Schema(name="ExamenModel", description = "Entidad de base de datos que representa los examenes")
 public class ExamenModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
+    @Schema(name="id", required = true, example = "1", description = "Define el identificador del registro del examen")
     private Long id;
 
     @Column(length = 50, unique = false, nullable = false)
     @NotEmpty
+    @Schema(name="nombre", required = true, example = "Examen de Historia II", description = "Define el nombre del examen")
     private String nombre;
 
     @Column(name = "create_at")
     @Temporal(TemporalType.TIMESTAMP)
+    @Schema(name="createAt", required = true, example = "2023-02-18T06:33:59", description = "Define la fecha/hora de creación del registro")
     private Date createAt;
 
     @Transient
+    @Schema(name="respondido", required = true, example = "true/false", description = "Define el estatus del examen")
     private boolean respondido;
     
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "asignatura_id", unique = false, nullable = false)
     @NotNull
+    @Schema(name="asignatura", required = true, example = "Asignatura 1", description = "Define la relación entre el Examen - Asignatura")
     private AsignaturaModel asignatura;
     
     @JsonIgnoreProperties(value = {"examen"}, allowSetters = true)
