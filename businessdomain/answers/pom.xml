@@ -12,6 +12,9 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>answers</name>
     <description>Demo project for Spring Boot</description>
+    <properties>
+        <dockerfile-maven-version>1.4.13</dockerfile-maven-version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -19,4 +22,31 @@
             <scope>runtime</scope>
         </dependency>
     </dependencies>
+    <!-- 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>${dockerfile-maven-version}</version>
+                <executions>
+                    <execution>
+                        <id>build-docker-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <repository>backend/microservice-docker-${project.artifactId}</repository>
+                    <tag>${project.version}</tag>
+                    <buildArgs>
+                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    -->
 </project>

@@ -1,0 +1,5 @@
+* docker images: muestra un listado de las imagenes de docker
+* docker-compose up -d: crea y levanta los contenedores a partir de la imagen
+* docker ps -a: muestra un listado de los contenedores de docker
+* docker-compose start: inicializa los contenedores de docker
+* docker-compose stop: detiene los contenedores de docker

@@ -1,0 +1,81 @@
+## YAML Template.
+---
+version: '3.8'
+
+services:
+    #EUREKA SERVER
+    registry-discovery:
+        container_name: id-eureka
+        image: backend/microservice-docker-eureka:0.0.1-SNAPSHOT
+        ports:
+            - 8761:8761
+        environment:
+            - JAVA_OPTS=
+                -Xms256M 
+                -Xmx256M
+             
+    #API GATEWAY SERVER
+    gateway:
+        container_name: id-gateway
+        image: backend/microservice-docker-gateway:0.0.1-SNAPSHOT
+        ports:
+            - 8090:8090
+        environment:
+            - JAVA_OPTS=
+                -Xms256M 
+                -Xmx256M
+                -DEUREKA_SERVER=http://registry-discovery:8761/eureka/
+        depends_on:
+            - registry-discovery
+            
+    #MICROSERVICIO ALUMNO      
+    alumns:
+        container_name: bd-alumns
+        image: backend/microservice-docker-alumns:0.0.1-SNAPSHOT   
+        environment:
+            - JAVA_OPTS=
+                -Xms256M 
+                -Xmx256M
+                -DEUREKA_SERVER=http://registry-discovery:8761/eureka/
+                -Dspring.profiles.active=development
+        depends_on:
+            - registry-discovery
+            
+    #MICROSERVICIO CURSO      
+    courses:
+        container_name: bd-courses
+        image: backend/microservice-docker-courses:0.0.1-SNAPSHOT   
+        environment:
+            - JAVA_OPTS=
+                -Xms256M 
+                -Xmx256M
+                -DEUREKA_SERVER=http://registry-discovery:8761/eureka/
+                -Dspring.profiles.active=development
+        depends_on:
+            - registry-discovery
+            
+    #MICROSERVICIO EXAMEN      
+    exams:
+        container_name: bd-exams
+        image: backend/microservice-docker-exams:0.0.1-SNAPSHOT   
+        environment:
+            - JAVA_OPTS=
+                -Xms256M 
+                -Xmx256M
+                -DEUREKA_SERVER=http://registry-discovery:8761/eureka/
+                -Dspring.profiles.active=development
+        depends_on:
+            - registry-discovery
+            
+    #MICROSERVICIO RESPUESTA      
+    answers:
+        container_name: bd-answers
+        image: backend/microservice-docker-answers:0.0.1-SNAPSHOT   
+        environment:
+            - JAVA_OPTS=
+                -Xms256M 
+                -Xmx256M
+                -DEUREKA_SERVER=http://registry-discovery:8761/eureka/
+                -Dspring.profiles.active=development
+        depends_on:
+            - registry-discovery
