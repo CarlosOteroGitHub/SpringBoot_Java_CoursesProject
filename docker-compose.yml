@@ -13,7 +13,21 @@ services:
             - JAVA_OPTS=
                 -Xms256M 
                 -Xmx256M
-             
+                
+    #ADMIN SERVER
+    admin:
+        container_name: id-admin
+        image: backend/microservice-docker-admin:0.0.1-SNAPSHOT    
+        ports:
+            - 8762:8762
+        environment:
+            - JAVA_OPTS=
+                -Xms256M 
+                -Xmx256M
+                -DEUREKA_SERVER=http://registry-discovery:8761/eureka/
+        depends_on:
+            - registry-discovery
+        
     #API GATEWAY SERVER
     gateway:
         container_name: id-gateway
@@ -31,7 +45,9 @@ services:
     #MICROSERVICIO ALUMNO      
     alumns:
         container_name: bd-alumns
-        image: backend/microservice-docker-alumns:0.0.1-SNAPSHOT   
+        image: backend/microservice-docker-alumns:0.0.1-SNAPSHOT
+        ports:
+            - 8080:8080
         environment:
             - JAVA_OPTS=
                 -Xms256M 
