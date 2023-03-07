@@ -31,5 +31,6 @@
         <module>eureka-server</module>
         <module>gateway</module>
         <module>admin</module>
+        <module>keycloack</module>
     </modules>
 </project>

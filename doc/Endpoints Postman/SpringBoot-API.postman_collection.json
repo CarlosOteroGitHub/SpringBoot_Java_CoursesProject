@@ -18,12 +18,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/listar-alumnos",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/listar-alumnos",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"listar-alumnos"
 									]
@@ -85,7 +83,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nombre\": \"German\",\r\n    \"apellido\": \"Cervantes\",\r\n    \"email\": \"german.cervantes.32@gmail.com\",\r\n    \"sexo\": \r\n        {\r\n            \"id\": 1,\r\n            \"nombre\": \"Masculino\"\r\n        }\r\n    \r\n}",
+									"raw": "{\r\n    \"nombre\": \"German\",\r\n    \"apellido\": \"Torres\",\r\n    \"email\": \"ger.torres34@gmail.com\",\r\n    \"sexo\": \r\n        {\r\n            \"id\": 1,\r\n            \"nombre\": \"Masculino\"\r\n        }\r\n    \r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -93,12 +91,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/agregar-alumno",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/agregar-alumno",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"agregar-alumno"
 									]
@@ -168,12 +164,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/detalle-alumno/:id",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/detalle-alumno/:id",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"detalle-alumno",
 										":id"
@@ -188,7 +182,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "3"
+											"value": "35"
 										}
 									]
 								}
@@ -262,12 +256,10 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/eliminar-alumno/:id",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/eliminar-alumno/:id",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"eliminar-alumno",
 										":id"
@@ -275,7 +267,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "3"
+											"value": "17"
 										}
 									]
 								}
@@ -337,12 +329,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/actualizar-alumno/:id",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/actualizar-alumno/:id",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"actualizar-alumno",
 										":id"
@@ -350,7 +340,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "15"
 										}
 									]
 								}
@@ -426,12 +416,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/alumno-page?page=0&size=10",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/alumno-page?page=0&size=10",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"alumno-page"
 									],
@@ -513,12 +501,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/detalle-alumno-archivo/:id",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/detalle-alumno-archivo/:id",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"detalle-alumno-archivo",
 										":id"
@@ -549,39 +535,37 @@
 									"formdata": [
 										{
 											"key": "nombre",
-											"value": "a123",
+											"value": "Alan",
 											"type": "text"
 										},
 										{
 											"key": "apellido",
-											"value": "v123",
+											"value": "Estrada",
 											"type": "text"
 										},
 										{
 											"key": "email",
-											"value": "s.estrada@gmail.com",
+											"value": "alan.estrada@gmail.com",
 											"type": "text"
 										},
 										{
 											"key": "archivo",
 											"type": "file",
-											"src": "/C:/Users/carlo/Escritorio/fot32o.PNG"
+											"src": "/C:/Users/carlo/Escritorio/foto.PNG"
 										},
 										{
 											"key": "sexo",
-											"value": "2",
+											"value": "1",
 											"contentType": "application/json",
 											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8080/agregar-archivo-alumno",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/agregar-archivo-alumno",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"agregar-archivo-alumno"
 									]
@@ -690,7 +674,7 @@
 									"formdata": [
 										{
 											"key": "nombre",
-											"value": "Carlos",
+											"value": "Alan",
 											"type": "text"
 										},
 										{
@@ -700,29 +684,27 @@
 										},
 										{
 											"key": "email",
-											"value": "karen.estrada450@gmail.com",
+											"value": "alan.estrada450@gmail.com",
 											"type": "text"
 										},
 										{
 											"key": "archivo",
 											"type": "file",
-											"src": "/C:/Users/carlo/Escritorio/fot32o.PNG"
+											"src": "/C:/Users/carlo/Escritorio/foto.PNG"
 										},
 										{
 											"key": "sexo",
-											"value": "2",
+											"value": "1",
 											"contentType": "application/json",
 											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8080/actualizar-archivo-alumno/:id",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/actualizar-archivo-alumno/:id",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"actualizar-archivo-alumno",
 										":id"
@@ -730,7 +712,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "18"
 										}
 									]
 								}
@@ -835,12 +817,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/alumno-template",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/alumno-template",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"alumno-template"
 									]
@@ -909,12 +889,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/listar-sexo",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/listar-sexo",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"listar-sexo"
 									]
@@ -975,12 +953,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/detalle-sexo/:id",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/detalle-sexo/:id",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"detalle-sexo",
 										":id"
@@ -1058,12 +1034,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/api/sexo/:id",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/api/sexo/:id",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"api",
 										"sexo",
@@ -1151,12 +1125,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/api/sexo",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/api/sexo",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"api",
 										"sexo"
@@ -1227,12 +1199,10 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/api/sexo/:id",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/api/sexo/:id",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"api",
 										"sexo",
@@ -1300,12 +1270,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/sexo-page?page=0&size=10",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/sexo-page?page=0&size=10",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"sexo-page"
 									],
@@ -1387,12 +1355,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/sexo-template",
-									"protocol": "http",
+									"raw": "{{http-alumns}}/sexo-template",
 									"host": [
-										"localhost"
+										"{{http-alumns}}"
 									],
-									"port": "8080",
 									"path": [
 										"sexo-template"
 									]
@@ -1466,12 +1432,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8081/listar-cursos",
-									"protocol": "http",
+									"raw": "{{http-courses}}/listar-cursos",
 									"host": [
-										"localhost"
+										"{{http-courses}}"
 									],
-									"port": "8081",
 									"path": [
 										"listar-cursos"
 									]
@@ -1540,12 +1504,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8081/agregar-curso",
-									"protocol": "http",
+									"raw": "{{http-courses}}/agregar-curso",
 									"host": [
-										"localhost"
+										"{{http-courses}}"
 									],
-									"port": "8081",
 									"path": [
 										"agregar-curso"
 									]
@@ -1614,12 +1576,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8081/detalle-curso/:id",
-									"protocol": "http",
+									"raw": "{{http-courses}}/detalle-curso/:id",
 									"host": [
-										"localhost"
+										"{{http-courses}}"
 									],
-									"port": "8081",
 									"path": [
 										"detalle-curso",
 										":id"
@@ -1693,12 +1653,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8081/curso-template",
-									"protocol": "http",
+									"raw": "{{http-courses}}/curso-template",
 									"host": [
-										"localhost"
+										"{{http-courses}}"
 									],
-									"port": "8081",
 									"path": [
 										"curso-template"
 									]
@@ -1762,12 +1720,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8081/curso-test",
-									"protocol": "http",
+									"raw": "{{http-courses}}/curso-test",
 									"host": [
-										"localhost"
+										"{{http-courses}}"
 									],
-									"port": "8081",
 									"path": [
 										"curso-test"
 									]
@@ -1827,12 +1783,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8081/curso-page?page=0&size=10",
-									"protocol": "http",
+									"raw": "{{http-courses}}/curso-page?page=0&size=10",
 									"host": [
-										"localhost"
+										"{{http-courses}}"
 									],
-									"port": "8081",
 									"path": [
 										"curso-page"
 									],
@@ -1911,12 +1865,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8081/actualizar-curso/:id",
-									"protocol": "http",
+									"raw": "{{http-courses}}/actualizar-curso/:id",
 									"host": [
-										"localhost"
+										"{{http-courses}}"
 									],
-									"port": "8081",
 									"path": [
 										"actualizar-curso",
 										":id"
@@ -1999,12 +1951,10 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8081/eliminar-curso/:id",
-									"protocol": "http",
+									"raw": "{{http-courses}}/eliminar-curso/:id",
 									"host": [
-										"localhost"
+										"{{http-courses}}"
 									],
-									"port": "8081",
 									"path": [
 										"eliminar-curso",
 										":id"
@@ -2063,6 +2013,83 @@
 									"body": null
 								}
 							]
+						},
+						{
+							"name": "Buscar Cursos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http-courses}}/buscar-curso/:nombre",
+									"host": [
+										"{{http-courses}}"
+									],
+									"path": [
+										"buscar-curso",
+										":nombre"
+									],
+									"variable": [
+										{
+											"key": "nombre",
+											"value": "Cálculo"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Buscar Cursos 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8081/buscar-curso/:nombre",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"buscar-curso",
+												":nombre"
+											],
+											"variable": [
+												{
+													"key": "nombre",
+													"value": "Cálculo"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 24 Feb 2023 03:19:29 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"nombre\": \"Cálculo Integral\",\n        \"createAt\": \"2023-01-30T06:31:26.000+00:00\"\n    },\n    {\n        \"id\": 2,\n        \"nombre\": \"Cálculo Diferencial\",\n        \"createAt\": \"2023-01-30T06:31:59.000+00:00\"\n    },\n    {\n        \"id\": 3,\n        \"nombre\": \"Cálculo Vectorial\",\n        \"createAt\": \"2023-01-30T06:32:04.000+00:00\"\n    }\n]"
+								}
+							]
 						}
 					]
 				}
@@ -2089,12 +2116,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8082/agregar-examen",
-									"protocol": "http",
+									"raw": "{{http-exams}}/agregar-examen",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"agregar-examen"
 									]
@@ -2163,12 +2188,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/detalle-examen/:id",
-									"protocol": "http",
+									"raw": "{{http-exams}}/detalle-examen/:id",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"detalle-examen",
 										":id"
@@ -2265,12 +2288,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8082/actualizar-examen/:id",
-									"protocol": "http",
+									"raw": "{{http-exams}}/actualizar-examen/:id",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"actualizar-examen",
 										":id"
@@ -2353,12 +2374,10 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/eliminar-examen/:id",
-									"protocol": "http",
+									"raw": "{{http-exams}}/eliminar-examen/:id",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"eliminar-examen",
 										":id"
@@ -2424,12 +2443,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/listar-examenes",
-									"protocol": "http",
+									"raw": "{{http-exams}}/listar-examenes",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"listar-examenes"
 									]
@@ -2489,12 +2506,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/examen-page?page=0&size=10",
-									"protocol": "http",
+									"raw": "{{http-exams}}/examen-page?page=0&size=10",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"examen-page"
 									],
@@ -2574,12 +2589,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/examen-template",
-									"protocol": "http",
+									"raw": "{{http-exams}}/examen-template",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"examen-template"
 									]
@@ -2648,12 +2661,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/listar-preguntas",
-									"protocol": "http",
+									"raw": "{{http-exams}}/listar-preguntas",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"listar-preguntas"
 									]
@@ -2713,12 +2724,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/api/pregunta/:id",
-									"protocol": "http",
+									"raw": "{{http-exams}}/api/pregunta/:id",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"api",
 										"pregunta",
@@ -2802,12 +2811,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8082/agregar-pregunta",
-									"protocol": "http",
+									"raw": "{{http-exams}}/agregar-pregunta",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"agregar-pregunta"
 									]
@@ -2876,12 +2883,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/pregunta-template",
-									"protocol": "http",
+									"raw": "{{http-exams}}/pregunta-template",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"pregunta-template"
 									]
@@ -2945,12 +2950,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/pregunta-page?page=0&size=10",
-									"protocol": "http",
+									"raw": "{{http-exams}}/pregunta-page?page=0&size=10",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"pregunta-page"
 									],
@@ -3039,12 +3042,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8082/actualizar-pregunta/:id",
-									"protocol": "http",
+									"raw": "{{http-exams}}/actualizar-pregunta/:id",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"actualizar-pregunta",
 										":id"
@@ -3127,12 +3128,10 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/eliminar-pregunta/:id",
-									"protocol": "http",
+									"raw": "{{http-exams}}/eliminar-pregunta/:id",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"eliminar-pregunta",
 										":id"
@@ -3203,12 +3202,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/listar-asignaturas",
-									"protocol": "http",
+									"raw": "{{http-exams}}/listar-asignaturas",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"listar-asignaturas"
 									]
@@ -3277,12 +3274,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8082/agregar-asignatura",
-									"protocol": "http",
+									"raw": "{{http-exams}}/agregar-asignatura",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"agregar-asignatura"
 									]
@@ -3351,12 +3346,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/asignatura-template",
-									"protocol": "http",
+									"raw": "{{http-exams}}/asignatura-template",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"asignatura-template"
 									]
@@ -3420,12 +3413,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/detalle-asignatura/:id",
-									"protocol": "http",
+									"raw": "{{http-exams}}/detalle-asignatura/:id",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"detalle-asignatura",
 										":id"
@@ -3508,12 +3499,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8082/actualizar-asignatura/:id",
-									"protocol": "http",
+									"raw": "{{http-exams}}/actualizar-asignatura/:id",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"actualizar-asignatura",
 										":id"
@@ -3596,12 +3585,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/listar-asignaturas?page=0&size=10",
-									"protocol": "http",
+									"raw": "{{http-exams}}/listar-asignaturas?page=0&size=10",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"listar-asignaturas"
 									],
@@ -3681,12 +3668,10 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/eliminar-asignatura/:id",
-									"protocol": "http",
+									"raw": "{{http-exams}}/eliminar-asignatura/:id",
 									"host": [
-										"localhost"
+										"{{http-exams}}"
 									],
-									"port": "8082",
 									"path": [
 										"eliminar-asignatura",
 										":id"
@@ -3762,12 +3747,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8083/listar-respuestas",
-									"protocol": "http",
+									"raw": "{{http-answers}}/listar-respuestas",
 									"host": [
-										"localhost"
+										"{{http-answers}}"
 									],
-									"port": "8083",
 									"path": [
 										"listar-respuestas"
 									]
@@ -3836,12 +3819,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8083/agregar-respuesta",
-									"protocol": "http",
+									"raw": "{{http-answers}}/agregar-respuesta",
 									"host": [
-										"localhost"
+										"{{http-answers}}"
 									],
-									"port": "8083",
 									"path": [
 										"agregar-respuesta"
 									]
@@ -3910,12 +3891,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8083/respuesta-template",
-									"protocol": "http",
+									"raw": "{{http-answers}}/respuesta-template",
 									"host": [
-										"localhost"
+										"{{http-answers}}"
 									],
-									"port": "8083",
 									"path": [
 										"respuesta-template"
 									]
@@ -3979,12 +3958,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8083/detalle-respuesta/:id",
-									"protocol": "http",
+									"raw": "{{http-answers}}/detalle-respuesta/:id",
 									"host": [
-										"localhost"
+										"{{http-answers}}"
 									],
-									"port": "8083",
 									"path": [
 										"detalle-respuesta",
 										":id"
@@ -4058,12 +4035,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8083/respuesta-page?page=0&size=10",
-									"protocol": "http",
+									"raw": "{{http-answers}}/respuesta-page?page=0&size=10",
 									"host": [
-										"localhost"
+										"{{http-answers}}"
 									],
-									"port": "8083",
 									"path": [
 										"respuesta-page"
 									],
@@ -4152,12 +4127,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8083/actualizar-respuesta/:id",
-									"protocol": "http",
+									"raw": "{{http-answers}}/actualizar-respuesta/:id",
 									"host": [
-										"localhost"
+										"{{http-answers}}"
 									],
-									"port": "8083",
 									"path": [
 										"actualizar-respuesta",
 										":id"
@@ -4240,12 +4213,10 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8083/eliminar-respuesta/:id",
-									"protocol": "http",
+									"raw": "{{http-answers}}/eliminar-respuesta/:id",
 									"host": [
-										"localhost"
+										"{{http-answers}}"
 									],
-									"port": "8083",
 									"path": [
 										"eliminar-respuesta",
 										":id"
@@ -4324,14 +4295,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-alumno/listar-alumnos",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-alumno/listar-alumnos",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-alumno",
 												"listar-alumnos"
 											]
@@ -4393,14 +4361,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-alumno/detalle-alumno/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-alumno/detalle-alumno/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-alumno",
 												"detalle-alumno",
 												":id"
@@ -4485,14 +4450,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-alumno/agregar-alumno",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-alumno/agregar-alumno",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-alumno",
 												"agregar-alumno"
 											]
@@ -4563,14 +4525,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-alumno/alumno-template",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-alumno/alumno-template",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-alumno",
 												"alumno-template"
 											]
@@ -4636,14 +4595,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-alumno/alumno-page?page=0&size=10",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-alumno/alumno-page?page=0&size=10",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-alumno",
 												"alumno-page"
 											],
@@ -4725,14 +4681,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-alumno/detalle-alumno-archivo/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-alumno/detalle-alumno-archivo/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-alumno",
 												"detalle-alumno-archivo",
 												":id"
@@ -4753,14 +4706,11 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-alumno/eliminar-alumno/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-alumno/eliminar-alumno/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-alumno",
 												"eliminar-alumno",
 												":id"
@@ -4837,14 +4787,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-alumno/actualizar-alumno/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-alumno/actualizar-alumno/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-alumno",
 												"actualizar-alumno",
 												":id"
@@ -4966,14 +4913,11 @@
 											]
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-alumno/agregar-archivo-alumno",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-alumno/agregar-archivo-alumno",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-alumno",
 												"agregar-archivo-alumno"
 											]
@@ -5109,14 +5053,11 @@
 											]
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-alumno/actualizar-archivo-alumno/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-alumno/actualizar-archivo-alumno/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-alumno",
 												"actualizar-archivo-alumno",
 												":id"
@@ -5142,14 +5083,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-sexo/listar-sexo",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-sexo/listar-sexo",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-sexo",
 												"listar-sexo"
 											]
@@ -5220,14 +5158,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-sexo/agregar-sexo",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-sexo/agregar-sexo",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-sexo",
 												"agregar-sexo"
 											]
@@ -5298,14 +5233,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-sexo/detalle-sexo/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-sexo/detalle-sexo/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-sexo",
 												"detalle-sexo",
 												":id"
@@ -5381,14 +5313,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-sexo/sexo-template",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-sexo/sexo-template",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-sexo",
 												"sexo-template"
 											]
@@ -5454,14 +5383,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-sexo/sexo-page?page=0&size=10",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-sexo/sexo-page?page=0&size=10",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-sexo",
 												"sexo-page"
 											],
@@ -5552,14 +5478,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-sexo/actualizar-sexo/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-sexo/actualizar-sexo/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-sexo",
 												"actualizar-sexo",
 												":id"
@@ -5644,14 +5567,11 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-sexo/eliminar-sexo/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-sexo/eliminar-sexo/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-sexo",
 												"eliminar-sexo",
 												":id"
@@ -5729,14 +5649,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-curso/listar-cursos",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-curso/listar-cursos",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-curso",
 												"listar-cursos"
 											]
@@ -5798,14 +5715,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-curso/curso-template",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-curso/curso-template",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-curso",
 												"curso-template"
 											]
@@ -5880,14 +5794,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-curso/agregar-curso",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-curso/agregar-curso",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-curso",
 												"agregar-curso"
 											]
@@ -5958,14 +5869,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-curso/detalle-curso/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-curso/detalle-curso/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-curso",
 												"detalle-curso",
 												":id"
@@ -6050,14 +5958,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-curso/actualizar-curso/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-curso/actualizar-curso/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-curso",
 												"actualizar-curso",
 												":id"
@@ -6142,14 +6047,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-curso/curso-page",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-curso/curso-page",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-curso",
 												"curso-page"
 											]
@@ -6267,14 +6169,11 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-curso/eliminar-curso/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-curso/eliminar-curso/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-curso",
 												"eliminar-curso",
 												":id"
@@ -6361,14 +6260,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-examen/agregar-examen",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-examen/agregar-examen",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-examen",
 												"agregar-examen"
 											]
@@ -6439,14 +6335,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-examen/detalle-examen/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-examen/detalle-examen/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-examen",
 												"detalle-examen",
 												":id"
@@ -6545,14 +6438,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-examen/actualizar-examen/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-examen/actualizar-examen/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-examen",
 												"actualizar-examen",
 												":id"
@@ -6637,14 +6527,11 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-examen/eliminar-examen/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-examen/eliminar-examen/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-examen",
 												"eliminar-examen",
 												":id"
@@ -6712,14 +6599,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-examen/listar-examenes",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-examen/listar-examenes",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-examen",
 												"listar-examenes"
 											]
@@ -6781,14 +6665,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-examen/examen-page?page=0&size=10",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-examen/examen-page?page=0&size=10",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-examen",
 												"examen-page"
 											],
@@ -6870,14 +6751,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-examen/examen-template",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-examen/examen-template",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-examen",
 												"examen-template"
 											]
@@ -6948,14 +6826,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-pregunta/listar-preguntas",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-pregunta/listar-preguntas",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-pregunta",
 												"listar-preguntas"
 											]
@@ -7017,14 +6892,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-pregunta/detalle-pregunta/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-pregunta/detalle-pregunta/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-pregunta",
 												"detalle-pregunta",
 												":id"
@@ -7109,14 +6981,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-pregunta/agregar-pregunta",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-pregunta/agregar-pregunta",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-pregunta",
 												"agregar-pregunta"
 											]
@@ -7187,14 +7056,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-pregunta/pregunta-template",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-pregunta/pregunta-template",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-pregunta",
 												"pregunta-template"
 											]
@@ -7260,14 +7126,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-pregunta/pregunta-page?page=0&size=10",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-pregunta/pregunta-page?page=0&size=10",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-pregunta",
 												"pregunta-page"
 											],
@@ -7358,14 +7221,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-pregunta/actualizar-pregunta/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-pregunta/actualizar-pregunta/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-pregunta",
 												"actualizar-pregunta",
 												":id"
@@ -7450,14 +7310,11 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-pregunta/eliminar-pregunta/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-pregunta/eliminar-pregunta/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-pregunta",
 												"eliminar-pregunta",
 												":id"
@@ -7530,14 +7387,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-asignatura/listar-asignaturas",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-asignatura/listar-asignaturas",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-asignatura",
 												"listar-asignaturas"
 											]
@@ -7608,14 +7462,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-asignatura/agregar-asignatura",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-asignatura/agregar-asignatura",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-asignatura",
 												"agregar-asignatura"
 											]
@@ -7686,14 +7537,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-asignatura/asignatura-template",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-asignatura/asignatura-template",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-asignatura",
 												"asignatura-template"
 											]
@@ -7759,14 +7607,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-asignatura/detalle-asignatura/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-asignatura/detalle-asignatura/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-asignatura",
 												"detalle-asignatura",
 												":id"
@@ -7851,14 +7696,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-asignatura/actualizar-asignatura/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-asignatura/actualizar-asignatura/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-asignatura",
 												"actualizar-asignatura",
 												":id"
@@ -7943,14 +7785,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-asignatura/listar-asignaturas?page=0&size=10",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-asignatura/listar-asignaturas?page=0&size=10",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-asignatura",
 												"listar-asignaturas"
 											],
@@ -8032,14 +7871,11 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-asignatura/eliminar-asignatura/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-asignatura/eliminar-asignatura/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-asignatura",
 												"eliminar-asignatura",
 												":id"
@@ -8117,14 +7953,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-respuesta/listar-respuestas",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-respuesta/listar-respuestas",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-respuesta",
 												"listar-respuestas"
 											]
@@ -8195,14 +8028,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-respuesta/agregar-respuesta",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-respuesta/agregar-respuesta",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-respuesta",
 												"agregar-respuesta"
 											]
@@ -8273,14 +8103,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-respuesta/respuesta-template",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-respuesta/respuesta-template",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-respuesta",
 												"respuesta-template"
 											]
@@ -8346,14 +8173,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-respuesta/detalle-respuesta/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-respuesta/detalle-respuesta/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-respuesta",
 												"detalle-respuesta",
 												":id"
@@ -8429,14 +8253,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-respuesta/respuesta-page?page=0&size=10",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-respuesta/respuesta-page?page=0&size=10",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-respuesta",
 												"respuesta-page"
 											],
@@ -8527,14 +8348,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-respuesta/actualizar-respuesta/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-respuesta/actualizar-respuesta/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-respuesta",
 												"actualizar-respuesta",
 												":id"
@@ -8619,14 +8437,11 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8090/gateway/api-respuesta/eliminar-respuesta/:id",
-											"protocol": "http",
+											"raw": "{{http-gateway}}/api-respuesta/eliminar-respuesta/:id",
 											"host": [
-												"localhost"
+												"{{http-gateway}}"
 											],
-											"port": "8090",
 											"path": [
-												"gateway",
 												"api-respuesta",
 												"eliminar-respuesta",
 												":id"
@@ -8689,6 +8504,236 @@
 									]
 								}
 							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Eureka Server",
+			"item": [
+				{
+					"name": "Listar Info de Apps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http-eureka}}/eureka/apps",
+							"host": [
+								"{{http-eureka}}"
+							],
+							"path": [
+								"eureka",
+								"apps"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Listar Info de Apps 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8761/eureka/apps",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8761",
+									"path": [
+										"eureka",
+										"apps"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/xml"
+								},
+								{
+									"key": "Content-Length",
+									"value": "671"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Mar 2023 18:00:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "<applications>\n    <versions__delta>1</versions__delta>\n    <apps__hashcode>UP_1_</apps__hashcode>\n    <application>\n        <name>ADMIN-SERVER</name>\n        <instance>\n            <instanceId>a0a1a51430a0:admin-server:8762</instanceId>\n            <hostName>a0a1a51430a0</hostName>\n            <app>ADMIN-SERVER</app>\n            <ipAddr>172.18.0.8</ipAddr>\n            <status>UP</status>\n            <overriddenstatus>UNKNOWN</overriddenstatus>\n            <port enabled=\"true\">8762</port>\n            <securePort enabled=\"false\">443</securePort>\n            <countryId>1</countryId>\n            <dataCenterInfo class=\"com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo\">\n                <name>MyOwn</name>\n            </dataCenterInfo>\n            <leaseInfo>\n                <renewalIntervalInSecs>10</renewalIntervalInSecs>\n                <durationInSecs>90</durationInSecs>\n                <registrationTimestamp>1678038741742</registrationTimestamp>\n                <lastRenewalTimestamp>1678039333645</lastRenewalTimestamp>\n                <evictionTimestamp>0</evictionTimestamp>\n                <serviceUpTimestamp>1678038732359</serviceUpTimestamp>\n            </leaseInfo>\n            <metadata>\n                <startup>-862208771</startup>\n                <management.port>8762</management.port>\n            </metadata>\n            <homePageUrl>http://a0a1a51430a0:8762/</homePageUrl>\n            <statusPageUrl>http://a0a1a51430a0:8762/actuator/info</statusPageUrl>\n            <healthCheckUrl>http://a0a1a51430a0:8762/actuator/health</healthCheckUrl>\n            <vipAddress>admin-server</vipAddress>\n            <secureVipAddress>admin-server</secureVipAddress>\n            <isCoordinatingDiscoveryServer>false</isCoordinatingDiscoveryServer>\n            <lastUpdatedTimestamp>1678038741742</lastUpdatedTimestamp>\n            <lastDirtyTimestamp>1678038729896</lastDirtyTimestamp>\n            <actionType>ADDED</actionType>\n        </instance>\n    </application>\n</applications>"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "KeyCloack Server",
+			"item": [
+				{
+					"name": "Obtain Access Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "cliend_id",
+									"value": "id-alumns-app",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "alumns",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "querty",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8091/auth/realms/backendchain/protocol/openid-connect/token/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"auth",
+								"realms",
+								"backendchain",
+								"protocol",
+								"openid-connect",
+								"token",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Obtain Access Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "cliend_id",
+											"value": "alumns-app",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "alumns",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "querty",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8091/auth/realms/backendchain/protocol/openid-connect/token/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8091",
+									"path": [
+										"auth",
+										"realms",
+										"backendchain",
+										"protocol",
+										"openid-connect",
+										"token",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-store"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Mar 2023 22:16:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"invalid_client\",\n    \"error_description\": \"Invalid client credentials\"\n}"
 						}
 					]
 				}

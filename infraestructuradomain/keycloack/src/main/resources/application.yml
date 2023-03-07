@@ -1,0 +1,16 @@
+## YAML Template.
+---
+spring:
+    # NOMBRE DEL SERVICIO
+    application:
+        name: microservicio-keycloack
+        
+# ESPECIFICACIÓN DEL PUERTO.
+server:
+    port: 8088
+    
+# CONFIGURACIÓN DE EUREKA SERVER
+eureka:
+    client:
+        service-url:
+            defaultZone: http://localhost:8761/eureka

@@ -70,7 +70,7 @@
         </plugins>
     </build>
     <modules>
-        <module>infraestructuradomain</module>
         <module>businessdomain</module>
+        <module>infraestructuradomain</module>
     </modules>
 </project>
