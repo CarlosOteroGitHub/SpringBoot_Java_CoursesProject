@@ -89,4 +89,62 @@ El backend de este proyecto de desarrollo como se menciono anteriormente, esta c
 
 ------------
 
+### Estructura de los Microservicios.
+
+#### Métodos auxiliares.
+
+#### Modelos.
+
+#### Repositorios.
+
+#### Servicios.
+
+#### Controladores.
+
+#### Pruebas unitarias.
+
+------------
+
 ### Ejecución del Proyecto :fa-play:
+
+#### Paso 1 - Descarga del repositorio del proyecto con Git.
+
+Primeramente antes de la ejecución del proyecto, devera clonar el repositorio de origen, para ello puede emplear la herramienta **Git**, la cual es util para el control de versiones de software. Para iniciar una instancia de Git en su equipo habra la consola de comandos de Git e ingrese el siguiente comando.
+
+```
+git init
+```
+
+Posteriormente ingrese el siguiente comando para descargar el repositorio del presente proyecto de desarollo directamente sobre su equipo.
+
+```
+git clone https://github.com/CarlosOteroGitHub/SpringBoot_Java_CoursesProject.git
+```
+
+#### Paso 2 - Creación de bases de datos en el SGBD PostgreSQL.
+
+Una vez descargado el proyecto en su equipo de computo habra el programa de **pgAdmin4**, el cual es una herramienta util para el manejo de bases de datos en el SGBD de **PostgreSQL**.  Posteriormente cree dos bases de datos llamadas de la siguiente manera:
+
+- **db_microservicio_alumnos**: Base de datos que corresponde al microservicio de alumnos.
+- **db_microservicio_respuestas**: Base de datos que corresponde al microservicio de respuestas.
+
+Es importante especificar que el puerto con el que debe ejecutarse el SGBD de PostgreSQL sobre el equipo local es el 5432. De igual forma las columnas o atributos de las entidades de las bases de datos se crearan de forma automatica al momento de construir los microservicios desde el IDE de NetBeans.
+
+___Nota:___ _Tambien puede utilizar la herramienta **DBeaver**  para administrar las distintas bases de datos de manera mas sencilla. Para ello debera especificar el SGBD de origen (MariaDB o PostgreSQL), el nombre de usuario, contraseña y número de puerto._
+
+#### Paso 3 - Creación de bases de datos en el SGBD MariaDB.
+
+Una vez descargado el proyecto en su equipo de computo habra el programa de **HeidiSQL**, el cual es una herramienta util para el manejo de bases de datos en el SGBD de **MariaDB**.  Posteriormente cree dos bases de datos llamadas de la siguiente manera:
+
+- **db_microservicio_cursos**: Base de datos que corresponde al microservicio de cursos.
+- **db_microservicio_examenes**: Base de datos que corresponde al microservicio de examenes.
+
+Es importante especificar que el puerto con el que debe ejecutarse el SGBD de MariaDB sobre el equipo local es el 3306. De igual forma las columnas o atributos de las entidades de las bases de datos se crearan de forma automatica al momento de construir los microservicios desde el IDE de NetBeans.
+
+___Nota:___ _Tambien puede utilizar la herramienta **DBeaver**  para administrar las distintas bases de datos de manera mas sencilla. Para ello debera especificar el SGBD de origen (MariaDB o PostgreSQL), el nombre de usuario, contraseña y número de puerto._
+
+#### Paso 4 - Construcción y Ejecución de los Servicios en el IDE NetBeans.
+
+#### Paso 5 - Creación de las imagenes de los Servicios con Docker.
+
+#### Paso 6 - Construcción de los contenedores de virtualización con Docker.

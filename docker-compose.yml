@@ -42,6 +42,22 @@ services:
         depends_on:
             - registry-discovery
             
+    #KEYCLOACK SERVER
+    keycloack:
+        container_name: id-keycloack
+        image: backend/microservice-docker-keycloack:0.0.1-SNAPSHOT
+        ports:
+            - 8088:8088
+        environment:
+            - JAVA_OPTS=
+                -Xms256M 
+                -Xmx256M
+                -DEUREKA_SERVER=http://registry-discovery:8761/eureka/
+                -DKEYCLOACK_SERVER=http://keycloack_server:8080/auth/realms/
+                -DKEYCLOACK_REAL_ID=MCS_u2Iro7tpusjoFI5wGMkxss42pCfdXw4LejRSdFs
+        depends_on:
+            - registry-discovery
+            
     #MICROSERVICIO ALUMNO      
     alumns:
         container_name: bd-alumns
@@ -94,7 +110,7 @@ services:
         depends_on:
             - registry-discovery
     
-    #KEYCLOACK SERVER
+    #KEYCLOACK SERVICE IMAGE
     keycloack_server:
         container_name: id-keycloackServer
         image: jboss/keycloak

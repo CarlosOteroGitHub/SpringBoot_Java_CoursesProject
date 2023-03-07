@@ -4281,6 +4281,80 @@
 			]
 		},
 		{
+			"name": "Eureka Server",
+			"item": [
+				{
+					"name": "Listar Info de Apps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http-eureka}}/eureka/apps",
+							"host": [
+								"{{http-eureka}}"
+							],
+							"path": [
+								"eureka",
+								"apps"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Listar Info de Apps 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8761/eureka/apps",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8761",
+									"path": [
+										"eureka",
+										"apps"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/xml"
+								},
+								{
+									"key": "Content-Length",
+									"value": "671"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Mar 2023 18:00:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "<applications>\n    <versions__delta>1</versions__delta>\n    <apps__hashcode>UP_1_</apps__hashcode>\n    <application>\n        <name>ADMIN-SERVER</name>\n        <instance>\n            <instanceId>a0a1a51430a0:admin-server:8762</instanceId>\n            <hostName>a0a1a51430a0</hostName>\n            <app>ADMIN-SERVER</app>\n            <ipAddr>172.18.0.8</ipAddr>\n            <status>UP</status>\n            <overriddenstatus>UNKNOWN</overriddenstatus>\n            <port enabled=\"true\">8762</port>\n            <securePort enabled=\"false\">443</securePort>\n            <countryId>1</countryId>\n            <dataCenterInfo class=\"com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo\">\n                <name>MyOwn</name>\n            </dataCenterInfo>\n            <leaseInfo>\n                <renewalIntervalInSecs>10</renewalIntervalInSecs>\n                <durationInSecs>90</durationInSecs>\n                <registrationTimestamp>1678038741742</registrationTimestamp>\n                <lastRenewalTimestamp>1678039333645</lastRenewalTimestamp>\n                <evictionTimestamp>0</evictionTimestamp>\n                <serviceUpTimestamp>1678038732359</serviceUpTimestamp>\n            </leaseInfo>\n            <metadata>\n                <startup>-862208771</startup>\n                <management.port>8762</management.port>\n            </metadata>\n            <homePageUrl>http://a0a1a51430a0:8762/</homePageUrl>\n            <statusPageUrl>http://a0a1a51430a0:8762/actuator/info</statusPageUrl>\n            <healthCheckUrl>http://a0a1a51430a0:8762/actuator/health</healthCheckUrl>\n            <vipAddress>admin-server</vipAddress>\n            <secureVipAddress>admin-server</secureVipAddress>\n            <isCoordinatingDiscoveryServer>false</isCoordinatingDiscoveryServer>\n            <lastUpdatedTimestamp>1678038741742</lastUpdatedTimestamp>\n            <lastDirtyTimestamp>1678038729896</lastDirtyTimestamp>\n            <actionType>ADDED</actionType>\n        </instance>\n    </application>\n</applications>"
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Server Gateway",
 			"item": [
 				{
@@ -8510,81 +8584,64 @@
 			]
 		},
 		{
-			"name": "Eureka Server",
+			"name": "KeyCloack Server",
 			"item": [
 				{
-					"name": "Listar Info de Apps",
+					"name": "Login",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "alumns",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "{{http-eureka}}/eureka/apps",
+							"raw": "{{http-keycloack}}/login",
 							"host": [
-								"{{http-eureka}}"
+								"{{http-keycloack}}"
 							],
 							"path": [
-								"eureka",
-								"apps"
+								"login"
 							]
 						}
 					},
-					"response": [
-						{
-							"name": "Listar Info de Apps 200",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8761/eureka/apps",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8761",
-									"path": [
-										"eureka",
-										"apps"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "xml",
-							"header": [
-								{
-									"key": "Content-Encoding",
-									"value": "gzip"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/xml"
-								},
-								{
-									"key": "Content-Length",
-									"value": "671"
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 05 Mar 2023 18:00:48 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
+					"response": []
+				},
+				{
+					"name": "Obtain Roles",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{http-keycloack}}/roles",
+							"host": [
+								"{{http-keycloack}}"
 							],
-							"cookie": [],
-							"body": "<applications>\n    <versions__delta>1</versions__delta>\n    <apps__hashcode>UP_1_</apps__hashcode>\n    <application>\n        <name>ADMIN-SERVER</name>\n        <instance>\n            <instanceId>a0a1a51430a0:admin-server:8762</instanceId>\n            <hostName>a0a1a51430a0</hostName>\n            <app>ADMIN-SERVER</app>\n            <ipAddr>172.18.0.8</ipAddr>\n            <status>UP</status>\n            <overriddenstatus>UNKNOWN</overriddenstatus>\n            <port enabled=\"true\">8762</port>\n            <securePort enabled=\"false\">443</securePort>\n            <countryId>1</countryId>\n            <dataCenterInfo class=\"com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo\">\n                <name>MyOwn</name>\n            </dataCenterInfo>\n            <leaseInfo>\n                <renewalIntervalInSecs>10</renewalIntervalInSecs>\n                <durationInSecs>90</durationInSecs>\n                <registrationTimestamp>1678038741742</registrationTimestamp>\n                <lastRenewalTimestamp>1678039333645</lastRenewalTimestamp>\n                <evictionTimestamp>0</evictionTimestamp>\n                <serviceUpTimestamp>1678038732359</serviceUpTimestamp>\n            </leaseInfo>\n            <metadata>\n                <startup>-862208771</startup>\n                <management.port>8762</management.port>\n            </metadata>\n            <homePageUrl>http://a0a1a51430a0:8762/</homePageUrl>\n            <statusPageUrl>http://a0a1a51430a0:8762/actuator/info</statusPageUrl>\n            <healthCheckUrl>http://a0a1a51430a0:8762/actuator/health</healthCheckUrl>\n            <vipAddress>admin-server</vipAddress>\n            <secureVipAddress>admin-server</secureVipAddress>\n            <isCoordinatingDiscoveryServer>false</isCoordinatingDiscoveryServer>\n            <lastUpdatedTimestamp>1678038741742</lastUpdatedTimestamp>\n            <lastDirtyTimestamp>1678038729896</lastDirtyTimestamp>\n            <actionType>ADDED</actionType>\n        </instance>\n    </application>\n</applications>"
+							"path": [
+								"roles"
+							]
 						}
-					]
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "KeyCloack Server",
+			"name": "KeyCloack Server from Docker",
 			"item": [
 				{
 					"name": "Obtain Access Token",
@@ -8611,21 +8668,17 @@
 								},
 								{
 									"key": "password",
-									"value": "querty",
+									"value": "12345",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8091/auth/realms/backendchain/protocol/openid-connect/token/",
-							"protocol": "http",
+							"raw": "{{http-keycloack-docker}}/backendchain/protocol/openid-connect/token/",
 							"host": [
-								"localhost"
+								"{{http-keycloack-docker}}"
 							],
-							"port": "8091",
 							"path": [
-								"auth",
-								"realms",
 								"backendchain",
 								"protocol",
 								"openid-connect",
