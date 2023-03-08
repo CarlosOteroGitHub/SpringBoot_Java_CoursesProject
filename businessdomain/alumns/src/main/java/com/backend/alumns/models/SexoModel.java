@@ -41,6 +41,11 @@ public class SexoModel {
         this.alumnos = new ArrayList<>();
     }
 
+    public SexoModel(Long id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
     public void setAlumnos(List<AlumnoModel> alumnos) {
         this.alumnos.clear();
         alumnos.forEach(p -> this.addAlumno(p));
