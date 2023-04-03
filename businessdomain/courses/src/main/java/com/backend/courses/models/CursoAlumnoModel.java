@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
@@ -31,6 +32,10 @@ public class CursoAlumnoModel {
     @NotEmpty
     @Schema(name="alumnoId", required = true, example = "1", description = "Define la relación con el ID del alumno")
     private Long alumnoId;
+    
+    @Transient
+    @Schema(name="alumnoNombre", required = false, example = "Carlos", description = "Define el nombre del alumno afiliado a un curso")
+    private String alumnoNombre;
     
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
