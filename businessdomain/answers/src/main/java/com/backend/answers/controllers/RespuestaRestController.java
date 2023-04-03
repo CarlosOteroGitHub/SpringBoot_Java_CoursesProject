@@ -106,9 +106,12 @@ public class RespuestaRestController {
     })
     @RequestMapping(value = "/actualizar-respuesta/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<?> patch(@Valid @RequestBody RespuestaModel respuestaModel, BindingResult result, @PathVariable long id) {
-        Optional<RespuestaModel> optional = respuestaService.findById(id);
-        if (optional == null || optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        Optional<RespuestaModel> optional;
+        try {
+            optional = respuestaService.findById(id);
+            if (optional == null || optional.isEmpty());
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
         
         if(result.hasErrors()){

@@ -77,9 +77,12 @@ public class ExamenRestController {
     })
     @RequestMapping(value = "/detalle-examen/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getID(@PathVariable long id) {
-        Optional<ExamenModel> optional = examenService.findById(id);
-        if (optional == null || optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        Optional<ExamenModel> optional;
+        try {
+            optional = examenService.findById(id);
+            if (optional == null || optional.isEmpty());
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }
@@ -103,11 +106,14 @@ public class ExamenRestController {
     })
     @RequestMapping(value = "/actualizar-examen/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<?> patch(@Valid @RequestBody ExamenModel examenModel, BindingResult result, @PathVariable long id) {
-        Optional<ExamenModel> optional = examenService.findById(id);
-        if (optional == null || optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        Optional<ExamenModel> optional;
+        try {
+            optional = examenService.findById(id);
+            if (optional == null || optional.isEmpty());
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
-        
+
         if (result.hasErrors()) {
             return new Auxiliar().mensajes_error(result);
         }

@@ -83,9 +83,12 @@ public class AlumnoRestController {
     })
     @RequestMapping(value = "/detalle-alumno/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getID(@PathVariable long id) {
-        Optional<AlumnoModel> optional = alumnoService.findById(id);
-        if (optional == null || optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        Optional<AlumnoModel> optional;
+        try {
+            optional = alumnoService.findById(id);
+            if (optional == null || optional.isEmpty());
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }
@@ -97,9 +100,12 @@ public class AlumnoRestController {
     })
     @RequestMapping(value = "/detalle-alumno-archivo/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> get_archivo(@PathVariable long id) {
-        Optional<AlumnoModel> optional = alumnoService.findById(id);
-        if (optional.isEmpty() || optional.get().getFoto() == null) {
-            return ResponseEntity.notFound().build();
+        Optional<AlumnoModel> optional;
+        try {
+            optional = alumnoService.findById(id);
+            if (optional == null || optional.isEmpty());
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
 
         Resource imagen = new ByteArrayResource(optional.get().getFoto());
@@ -137,9 +143,12 @@ public class AlumnoRestController {
     })
     @RequestMapping(value = "/actualizar-alumno/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> put(@Valid @RequestBody AlumnoModel alumnoModel, BindingResult result, @PathVariable long id) {
-        Optional<AlumnoModel> optional = alumnoService.findById(id);
-        if (optional == null || optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        Optional<AlumnoModel> optional;
+        try {
+            optional = alumnoService.findById(id);
+            if (optional == null || optional.isEmpty());
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
         
         if (result.hasErrors()) {
@@ -162,9 +171,12 @@ public class AlumnoRestController {
     })
     @RequestMapping(value = "/actualizar-archivo-alumno/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> put_archivo(@Valid AlumnoModel alumnoModel, BindingResult result, @PathVariable long id, @RequestParam MultipartFile archivo) throws IOException {
-        Optional<AlumnoModel> optional = alumnoService.findById(id);
-        if (optional == null || optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+	Optional<AlumnoModel> optional;
+        try {
+            optional = alumnoService.findById(id);
+            if (optional == null || optional.isEmpty());
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
         
         if (result.hasErrors()) {

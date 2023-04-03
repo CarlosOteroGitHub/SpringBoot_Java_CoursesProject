@@ -106,9 +106,12 @@ public class SexoRestController {
     })
     @RequestMapping(value = "/actualizar-sexo/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<?> patch(@Valid @RequestBody SexoModel sexoModel, BindingResult result, @PathVariable long id) {
-        Optional<SexoModel> optional = sexoService.findById(id);
-        if (optional == null || optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+	Optional<SexoModel> optional;
+        try {
+            optional = sexoService.findById(id);
+            if (optional == null || optional.isEmpty());
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
         
         if(result.hasErrors()){

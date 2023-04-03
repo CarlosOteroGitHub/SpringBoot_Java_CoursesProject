@@ -77,9 +77,12 @@ public class AsignaturaRestController {
     })
     @RequestMapping(value = "/detalle-asignatura/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getID(@PathVariable long id) {
-        Optional<AsignaturaModel> optional = asignaturaService.findById(id);
-        if (optional == null || optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        Optional<AsignaturaModel> optional;
+        try {
+            optional = asignaturaService.findById(id);
+            if (optional == null || optional.isEmpty());
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }
@@ -103,9 +106,12 @@ public class AsignaturaRestController {
     })
     @RequestMapping(value = "/actualizar-asignatura/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<?> patch(@Valid @RequestBody AsignaturaModel asignaturaModel, BindingResult result, @PathVariable long id) {
-        Optional<AsignaturaModel> optional = asignaturaService.findById(id);
-        if (optional == null || optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        Optional<AsignaturaModel> optional;
+        try {
+            optional = asignaturaService.findById(id);
+            if (optional == null || optional.isEmpty());
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
         
         if (result.hasErrors()) {

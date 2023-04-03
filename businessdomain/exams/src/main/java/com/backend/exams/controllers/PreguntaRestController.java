@@ -77,9 +77,12 @@ public class PreguntaRestController {
     })
     @RequestMapping(value = "/detalle-pregunta/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getID(@PathVariable long id) {
-        Optional<PreguntaModel> optional = preguntaService.findById(id);
-        if (optional == null || optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        Optional<PreguntaModel> optional;
+        try {
+            optional = preguntaService.findById(id);
+            if (optional == null || optional.isEmpty());
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }
@@ -103,9 +106,12 @@ public class PreguntaRestController {
     })
     @RequestMapping(value = "/actualizar-pregunta/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<?> patch(@Valid @RequestBody PreguntaModel preguntaModel, BindingResult result, @PathVariable long id) {
-        Optional<PreguntaModel> optional = preguntaService.findById(id);
-        if (optional == null || optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        Optional<PreguntaModel> optional;
+        try {
+            optional = preguntaService.findById(id);
+            if (optional == null || optional.isEmpty());
+        } catch(Exception e){
+            return new ApiExceptionHandler().handleNotFoundException(e);
         }
         
         if (result.hasErrors()) {
