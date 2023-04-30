@@ -31,7 +31,7 @@ public class AlumnsApplication {
 
 /*
 
-URL Swagger: http://localhost:8080/swagger/index.html
+URL Swagger: http://localhost:8081/swagger/index.html
 java -jar C:/Users/carlo/.m2/repository/com/backend/alumns/0.0.1-SNAPSHOT/alumns-0.0.1-SNAPSHOT.jar
 
 */

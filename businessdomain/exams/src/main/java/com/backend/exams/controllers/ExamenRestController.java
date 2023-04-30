@@ -42,29 +42,18 @@ public class ExamenRestController {
         return modelAndView;
     }
 
-    @Operation(summary = "Retorna un Listado de Elementos", description = "API para Retornar el Listado de Elementos del Servicio Examen")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
-        @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
-    })
-    @RequestMapping(value = "/listar-examenes", method = RequestMethod.GET)
-    public ResponseEntity<?> get() {
-        List<ExamenModel> lista = (List<ExamenModel>) examenService.findAll();
-        if(lista == null || lista.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok().body(examenService.findAll());
-    }
-    
     @Operation(summary = "Retorna un Listado de Elementos con Paginación", description = "API para Retornar el Listado de Elementos con Paginación del Servicio Examen")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
         @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
     })
-    @RequestMapping(value = "/examen-page", method = RequestMethod.GET)
-    public ResponseEntity<?> get_page(Pageable pageable) {
-        List<ExamenModel> lista = (List<ExamenModel>) examenService.findAll();
-        if(lista == null || lista.isEmpty()){
+    @RequestMapping(value = "/listar-examenes", method = RequestMethod.GET)
+    public ResponseEntity<?> get(Pageable pageable) {
+        List<ExamenModel> lista;
+        try {
+            lista = (List<ExamenModel>) examenService.findAll();
+            if(lista == null || lista.isEmpty());
+        } catch (Exception e) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok().body(examenService.findAll(pageable));

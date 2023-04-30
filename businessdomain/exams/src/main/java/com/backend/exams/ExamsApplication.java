@@ -31,7 +31,7 @@ public class ExamsApplication {
 
 /*
 
-URL Swagger: http://localhost:8082/swagger/index.html
+URL Swagger: http://localhost:8083/swagger/index.html
 java -jar C:\Users\carlo\.m2\repository\com\backend\exams\0.0.1-SNAPSHOT\exams-0.0.1-SNAPSHOT.jar
 
  */

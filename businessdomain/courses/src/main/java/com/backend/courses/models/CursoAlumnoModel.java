@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -29,7 +28,6 @@ public class CursoAlumnoModel {
     private Long id;
     
     @Column(name="alumno_id", unique = false, nullable = false)
-    @NotEmpty
     @Schema(name="alumnoId", required = true, example = "1", description = "Define la relación con el ID del alumno")
     private Long alumnoId;
     

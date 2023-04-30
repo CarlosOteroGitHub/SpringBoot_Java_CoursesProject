@@ -42,29 +42,18 @@ public class SexoRestController {
         return modelAndView;
     }
 
-    @Operation(summary = "Retorna un Listado de Elementos", description = "API para Retornar el Listado de Elementos del Servicio Sexo")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
-        @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
-    })
-    @RequestMapping(value = "/listar-sexo", method = RequestMethod.GET)
-    public ResponseEntity<?> get() {
-        List<SexoModel> lista = (List<SexoModel>) sexoService.findAll();
-        if(lista == null || lista.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok().body(sexoService.findAll());
-    }
-    
     @Operation(summary = "Retorna un Listado de Elementos con Paginación", description = "API para Retornar el Listado de Elementos con Paginación del Servicio Sexo")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
         @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
     })
-    @RequestMapping(value = "/sexo-page", method = RequestMethod.GET)
-    public ResponseEntity<?> get_page(Pageable pageable) {
-        List<SexoModel> lista = (List<SexoModel>) sexoService.findAll();
-        if(lista == null || lista.isEmpty()){
+    @RequestMapping(value = "/listar-sexo", method = RequestMethod.GET)
+    public ResponseEntity<?> get(Pageable pageable) {
+        List<SexoModel> lista;
+        try {
+            lista = (List<SexoModel>) sexoService.findAll();
+            if(lista == null || lista.isEmpty());
+        } catch (Exception e) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok().body(sexoService.findAll(pageable));

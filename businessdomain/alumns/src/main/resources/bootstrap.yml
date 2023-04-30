@@ -39,7 +39,7 @@ spring:
 
 # ESPECIFICACIÓN DEL PUERTO.
 server:
-    port: 0
+    port: 8081
     
 # CONFIGURACIÓN DE SWAGGER
 springdoc:

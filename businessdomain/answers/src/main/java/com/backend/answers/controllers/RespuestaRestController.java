@@ -42,34 +42,23 @@ public class RespuestaRestController {
         return modelAndView;
     }
 
-    @Operation(summary = "Retorna un Listado de Elementos", description = "API para Retornar el Listado de Elementos del Servicio Respuesta")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
-        @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
-    })
-    @RequestMapping(value = "/listar-respuestas", method = RequestMethod.GET)
-    public ResponseEntity<?> get() {
-        List<RespuestaModel> lista = (List<RespuestaModel>) respuestaService.findAll();
-        if(lista == null || lista.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok().body(respuestaService.findAll());
-    }
-
     @Operation(summary = "Retorna un Listado de Elementos con Paginación", description = "API para Retornar el Listado de Elementos con Paginación del Servicio Respuesta")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
         @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
     })
-    @RequestMapping(value = "/respuesta-page", method = RequestMethod.GET)
-    public ResponseEntity<?> get_page(Pageable pageable) {
-        List<RespuestaModel> lista = (List<RespuestaModel>) respuestaService.findAll();
-        if(lista == null || lista.isEmpty()){
+    @RequestMapping(value = "/listar-respuestas", method = RequestMethod.GET)
+    public ResponseEntity<?> get(Pageable pageable) {
+        List<RespuestaModel> lista;
+        try {
+            lista = (List<RespuestaModel>) respuestaService.findAll();
+            if(lista == null || lista.isEmpty());
+        } catch (Exception e) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok().body(respuestaService.findAll(pageable));
     }
-    
+
     @Operation(summary = "Retorna el Detalle de un Elemento por ID", description = "API para Retornar el Detalle de un Elemento por ID del Servicio Respuesta")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),

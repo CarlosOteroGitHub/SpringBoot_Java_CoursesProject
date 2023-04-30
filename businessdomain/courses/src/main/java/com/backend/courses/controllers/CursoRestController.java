@@ -2,7 +2,6 @@ package com.backend.courses.controllers;
 
 import com.backend.courses.auxiliar.ApiExceptionHandler;
 import com.backend.courses.auxiliar.Auxiliar;
-import com.backend.courses.auxiliar.HttpClientCommunication;
 import com.backend.courses.models.CursoAlumnoModel;
 import com.backend.courses.models.CursoModel;
 import com.backend.courses.services.CursoService;
@@ -72,8 +71,11 @@ public class CursoRestController {
                 .build();
         JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
                 .retrieve().bodyToMono(JsonNode.class).block();
-        String name = block.get("nombre").asText();
-        return name;
+        StringBuilder sb = new StringBuilder(100);
+        sb.append(block.get("nombre").asText());
+        sb.append(" ");
+        sb.append(block.get("apellido").asText());
+        return sb.toString();
     }
 
     @Autowired
@@ -93,48 +95,28 @@ public class CursoRestController {
         return modelAndView;
     }
 
-    @Operation(summary = "Retorna un Listado de Elementos", description = "API para Retornar el Listado de Elementos del Servicio Curso")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
-        @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
-    })
-    @RequestMapping(value = "/listar-cursos", method = RequestMethod.GET)
-    public ResponseEntity<?> get() {
-        List<CursoModel> lista = (List<CursoModel>) cursoService.findAll();
-        if (lista == null || lista.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok().body(cursoService.findAll());
-    }
-
     @Operation(summary = "Retorna un Listado de Elementos con Paginación", description = "API para Retornar el Listado de Elementos con Paginación del Servicio Curso")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
         @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
     })
-    @RequestMapping(value = "/curso-page", method = RequestMethod.GET)
-    public ResponseEntity<?> get_page(Pageable pageable) {
-        List<CursoModel> lista = (List<CursoModel>) cursoService.findAll();
-        if (lista == null || lista.isEmpty()) {
+    @RequestMapping(value = "/listar-cursos", method = RequestMethod.GET)
+    public ResponseEntity<?> get(Pageable pageable) {
+        List<CursoModel> lista;
+        try {
+            lista = (List<CursoModel>) cursoService.findAll();
+            if (lista == null || lista.isEmpty());
+            for (int i = 0; i < lista.size(); i++) {
+                List<CursoAlumnoModel> alumnos = (List<CursoAlumnoModel>) lista.get(i).getCursoAlumnos();
+                alumnos.forEach(x -> {
+                    String alumnoName = getAlumnoName(x.getAlumnoId());
+                    x.setAlumnoNombre(alumnoName);
+                });
+            }
+        } catch (Exception e) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok().body(cursoService.findAll(pageable));
-    }
-
-    @Operation(summary = "Retorna un Listado de Elementos con la Variable del Balanceador de Carga", description = "API para Retornar el Listado de Elementos con la Variable del Balanceador de Carga del Servicio Curso")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "HTTP Status - OK")
-    })
-    @RequestMapping(value = "/curso-test", method = RequestMethod.GET)
-    public ResponseEntity<?> get_test() {
-        Map<String, Object> response = new HashMap<>();
-        response.put("balanceador", this.balanceador_test);
-        response.put("cursos", cursoService.findAll());
-
-        if (response == null || response.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(response);
     }
 
     @Operation(summary = "Retorna el Detalle de un Elemento por ID", description = "API para Retornar el Detalle de un Elemento por ID del Servicio Curso")
@@ -148,25 +130,14 @@ public class CursoRestController {
         try {
             optional = cursoService.findById(id);
             if (optional == null || optional.isEmpty());
+            List<CursoAlumnoModel> alumnos = (List<CursoAlumnoModel>) optional.get().getCursoAlumnos();
+            alumnos.forEach(x -> {
+                String alumnoName = getAlumnoName(x.getAlumnoId());
+                x.setAlumnoNombre(alumnoName);
+            });
         } catch (Exception e) {
             return new ApiExceptionHandler().handleNotFoundException(e);
         }
-        return ResponseEntity.ok(optional.get());
-    }
-
-    @Operation(summary = "Retorna el Detalle de un Elemento por ID con los Alumnos Afiliados", description = "API para Retornar el Detalle de un Elemento por ID del Servicio Curso con los Alumnos")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
-        @ApiResponse(responseCode = "404", description = "HTTP Status - NotFound")
-    })
-    @RequestMapping(value = "/detalle-curso-alumnos/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getCursoAlumnos(@PathVariable long id) {
-        Optional<CursoModel> optional = cursoService.findById(id);
-        List<CursoAlumnoModel> alumnos = (List<CursoAlumnoModel>) optional.get().getCursoAlumnos();
-        alumnos.forEach(x -> {
-            String alumnoName = getAlumnoName(x.getAlumnoId());
-            x.setAlumnoNombre(alumnoName);
-        });
         return ResponseEntity.ok(optional.get());
     }
 
@@ -181,10 +152,34 @@ public class CursoRestController {
         try {
             optional = cursoService.findByNombre(nombre);
             if (optional == null || optional.isEmpty());
+            List<CursoAlumnoModel> alumnos = (List<CursoAlumnoModel>) optional.get().getCursoAlumnos();
+            alumnos.forEach(x -> {
+                String alumnoName = getAlumnoName(x.getAlumnoId());
+                x.setAlumnoNombre(alumnoName);
+            });
         } catch (Exception e) {
             return new ApiExceptionHandler().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
+    }
+
+    @Operation(summary = "Retorna un Listado de Elementos con la Variable del Balanceador de Carga", description = "API para Retornar el Listado de Elementos con la Variable del Balanceador de Carga del Servicio Curso")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
+        @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
+    })
+    @RequestMapping(value = "/curso-test", method = RequestMethod.GET)
+    public ResponseEntity<?> get_test() {
+        Map<String, Object> response;
+        try {
+            response = new HashMap<>();
+            response.put("balanceador", this.balanceador_test);
+            response.put("cursos", cursoService.findAll());
+            if (response == null || response.isEmpty());
+        } catch (Exception e) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(response);
     }
 
     @Operation(summary = "Agrega un Nuevo Elemento", description = "API para Agregar un Nuevo Elemento al Servicio Curso")

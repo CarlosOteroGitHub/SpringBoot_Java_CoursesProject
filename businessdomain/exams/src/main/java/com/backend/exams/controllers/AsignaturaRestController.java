@@ -42,29 +42,18 @@ public class AsignaturaRestController {
         return modelAndView;
     }
 
-    @Operation(summary = "Retorna un Listado de Elementos", description = "API para Retornar el Listado de Elementos del Servicio Asignatura")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
-        @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
-    })
-    @RequestMapping(value = "/listar-asignaturas", method = RequestMethod.GET)
-    public ResponseEntity<?> get() {
-        List<AsignaturaModel> lista = (List<AsignaturaModel>) asignaturaService.findAll();
-        if(lista == null || lista.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok().body(asignaturaService.findAll());
-    }
-    
     @Operation(summary = "Retorna un Listado de Elementos con Paginación", description = "API para Retornar el Listado de Elementos con Paginación del Servicio Asignatura")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
         @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
     })
-    @RequestMapping(value = "/asignatura-page", method = RequestMethod.GET)
-    public ResponseEntity<?> get_page(Pageable pageable) {
-        List<AsignaturaModel> lista = (List<AsignaturaModel>) asignaturaService.findAll();
-        if(lista == null || lista.isEmpty()){
+    @RequestMapping(value = "/listar-asignaturas", method = RequestMethod.GET)
+    public ResponseEntity<?> get(Pageable pageable) {
+        List<AsignaturaModel> lista;
+        try {
+            lista = (List<AsignaturaModel>) asignaturaService.findAll();
+            if(lista == null || lista.isEmpty());
+        } catch (Exception e) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok().body(asignaturaService.findAll(pageable));

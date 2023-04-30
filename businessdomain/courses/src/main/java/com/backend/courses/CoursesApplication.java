@@ -31,7 +31,7 @@ public class CoursesApplication {
 
 /*
 
-URL Swagger: http://localhost:8081/swagger/index.html
+URL Swagger: http://localhost:8082/swagger/index.html
 java -jar C:\Users\carlo\.m2\repository\com\backend\courses\0.0.1-SNAPSHOT\courses-0.0.1-SNAPSHOT.jar
 
  */

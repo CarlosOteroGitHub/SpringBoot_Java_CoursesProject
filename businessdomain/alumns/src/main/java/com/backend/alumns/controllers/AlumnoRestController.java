@@ -48,34 +48,23 @@ public class AlumnoRestController {
         return modelAndView;
     }
 
-    @Operation(summary = "Retorna un Listado de Elementos", description = "API para Retornar el Listado de Elementos del Servicio Alumno")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
-        @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
-    })
-    @RequestMapping(value = "/listar-alumnos", method = RequestMethod.GET)
-    public ResponseEntity<?> get() {
-        List<AlumnoModel> lista = (List<AlumnoModel>) alumnoService.findAll();
-        if(lista == null || lista.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok().body(alumnoService.findAll());
-    }
-
     @Operation(summary = "Retorna un Listado de Elementos con Paginación", description = "API para Retornar el Listado de Elementos con Paginación del Servicio Alumno")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
         @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
     })
-    @RequestMapping(value = "/alumno-page", method = RequestMethod.GET)
-    public ResponseEntity<?> get_page(Pageable pageable) {
-        List<AlumnoModel> lista = (List<AlumnoModel>) alumnoService.findAll();
-        if(lista == null || lista.isEmpty()){
+    @RequestMapping(value = "/listar-alumnos", method = RequestMethod.GET)
+    public ResponseEntity<?> get(Pageable pageable) {
+        List<AlumnoModel> lista;
+        try {
+            lista = (List<AlumnoModel>) alumnoService.findAll();
+            if(lista == null || lista.isEmpty());
+        } catch (Exception e) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok().body(alumnoService.findAll(pageable));
     }
-    
+
     @Operation(summary = "Retorna el Detalle de un Elemento por ID", description = "API para Retornar el Detalle de un Elemento por ID del Servicio Alumno")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),

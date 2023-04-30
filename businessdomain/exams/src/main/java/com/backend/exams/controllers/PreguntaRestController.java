@@ -42,29 +42,18 @@ public class PreguntaRestController {
         return modelAndView;
     }
 
-    @Operation(summary = "Retorna un Listado de Elementos", description = "API para Retornar el Listado de Elementos del Servicio Pregunta")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
-        @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
-    })
-    @RequestMapping(value = "/listar-preguntas", method = RequestMethod.GET)
-    public ResponseEntity<?> get() {
-        List<PreguntaModel> lista = (List<PreguntaModel>) preguntaService.findAll();
-        if(lista == null || lista.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok().body(preguntaService.findAll());
-    }
-    
     @Operation(summary = "Retorna un Listado de Elementos con Paginación", description = "API para Retornar el Listado de Elementos con Paginación del Servicio Pregunta")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
         @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
     })
-    @RequestMapping(value = "/pregunta-page", method = RequestMethod.GET)
-    public ResponseEntity<?> get_page(Pageable pageable) {
-        List<PreguntaModel> lista = (List<PreguntaModel>) preguntaService.findAll();
-        if(lista == null || lista.isEmpty()){
+    @RequestMapping(value = "/listar-preguntas", method = RequestMethod.GET)
+    public ResponseEntity<?> get(Pageable pageable) {
+        List<PreguntaModel> lista;
+        try {
+            lista = (List<PreguntaModel>) preguntaService.findAll();
+            if(lista == null || lista.isEmpty());
+        } catch (Exception e) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok().body(preguntaService.findAll(pageable));
