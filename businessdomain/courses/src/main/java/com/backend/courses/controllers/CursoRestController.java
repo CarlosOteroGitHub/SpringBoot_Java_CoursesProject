@@ -226,13 +226,14 @@ public class CursoRestController {
     })
     @RequestMapping(value = "/eliminar-curso/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable long id) {
+        Optional<CursoModel> optional;
         try {
-            Optional<CursoModel> optional = cursoService.findById(id);
+            optional = cursoService.findById(id);
             if (optional == null || optional.isEmpty());
             cursoService.deleteById(id);
         } catch (Exception e) {
             return new ApiExceptionHandler().handleNotFoundException(e);
         }
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(optional.get());
     }
 }

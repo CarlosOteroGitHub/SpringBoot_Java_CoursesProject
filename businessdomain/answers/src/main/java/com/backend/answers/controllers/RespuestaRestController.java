@@ -120,13 +120,14 @@ public class RespuestaRestController {
     })
     @RequestMapping(value = "/eliminar-respuesta/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable long id) {
+        Optional<RespuestaModel> optional;
         try {
-            Optional<RespuestaModel> optional = respuestaService.findById(id);
+            optional = respuestaService.findById(id);
             if (optional == null || optional.isEmpty());
             respuestaService.deleteById(id);
         } catch(Exception e){
             return new ApiExceptionHandler().handleNotFoundException(e);
         }
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(optional.get());
     }
 }

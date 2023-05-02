@@ -73,6 +73,22 @@ public class CursoAlumnoRestController {
         sb.append(block.get("apellido").asText());
         return sb.toString();
     }
+    
+    private boolean validIdAlumno(int id) {
+        boolean bandera = true;
+        WebClient build = webClientBuilder.clientConnector(new ReactorClientHttpConnector(httpClient))
+                .baseUrl("http://localhost:8081/detalle-alumno")
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8081/detalle-alumno"))
+                .build();
+        JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
+                .retrieve().bodyToMono(JsonNode.class).block();
+        
+        if(block.get("id").asText().isEmpty()){
+            bandera = false;
+        }
+        return bandera;
+    }
 
     @Autowired
     CursoAlumnoService cursoAlumnoService;
@@ -99,6 +115,10 @@ public class CursoAlumnoRestController {
         try {
             lista = (List<CursoAlumnoModel>) cursoAlumnoService.findAll();
             if (lista == null || lista.isEmpty());
+            lista.forEach(x -> {
+                String alumnoName = getAlumnoName(x.getAlumnoId());
+                x.setAlumnoNombre(alumnoName);
+            });
         } catch (Exception e) {
             return ResponseEntity.noContent().build();
         }
@@ -145,6 +165,8 @@ public class CursoAlumnoRestController {
     })
     @RequestMapping(value = "/agregar-curso-alumno", method = RequestMethod.POST)
     public ResponseEntity<?> post(@Valid @RequestBody CursoAlumnoModel cursoAlumnoModel, BindingResult result) {
+        if(validIdAlumno(Integer.parseInt(cursoAlumnoModel.getAlumnoId().toString())));
+        
         if (result.hasErrors()) {
             return new Auxiliar().mensajes_error(result);
         }
@@ -158,13 +180,14 @@ public class CursoAlumnoRestController {
     })
     @RequestMapping(value = "/eliminar-curso-alumno/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable long id) {
+        Optional<CursoAlumnoModel> optional;
         try {
-            Optional<CursoAlumnoModel> optional = cursoAlumnoService.findById(id);
+            optional = cursoAlumnoService.findById(id);
             if (optional == null || optional.isEmpty());
             cursoAlumnoService.deleteById(id);
         } catch (Exception e) {
             return new ApiExceptionHandler().handleNotFoundException(e);
         }
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(optional.get());
     }
 }

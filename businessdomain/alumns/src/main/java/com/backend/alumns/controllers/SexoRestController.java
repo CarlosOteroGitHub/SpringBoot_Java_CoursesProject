@@ -120,13 +120,14 @@ public class SexoRestController {
     })
     @RequestMapping(value = "/eliminar-sexo/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable long id) {
+        Optional<SexoModel> optional;
         try {
-            Optional<SexoModel> optional = sexoService.findById(id);
+            optional = sexoService.findById(id);
             if (optional == null || optional.isEmpty());
             sexoService.deleteById(id);
         } catch(Exception e){
             return new ApiExceptionHandler().handleNotFoundException(e);
         }
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(optional.get());
     }
 }
