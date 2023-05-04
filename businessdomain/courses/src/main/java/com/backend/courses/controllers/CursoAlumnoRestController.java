@@ -55,7 +55,7 @@ public class CursoAlumnoRestController {
             lista = (List<CursoAlumnoModel>) cursoAlumnoService.findAll();
             if (lista == null || lista.isEmpty());
             lista.forEach(x -> {
-                String alumnoName = new Alumnos().getAlumnoName(x.getAlumnoId().intValue());
+                String alumnoName = Alumnos.getInstance().getAlumnoName(x.getAlumnoId().intValue());
                 x.setAlumnoNombre(alumnoName);
             });
         } catch (Exception e) {
@@ -77,11 +77,11 @@ public class CursoAlumnoRestController {
             if (optional == null || optional.isEmpty());
             List<CursoAlumnoModel> alumnos = (List<CursoAlumnoModel>) optional.get().getCurso().getCursoAlumnos();
             alumnos.forEach(x -> {
-                String alumnoName = new Alumnos().getAlumnoName(x.getAlumnoId().intValue());
+                String alumnoName = Alumnos.getInstance().getAlumnoName(x.getAlumnoId().intValue());
                 x.setAlumnoNombre(alumnoName);
             });
         } catch (Exception e) {
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }
@@ -98,7 +98,7 @@ public class CursoAlumnoRestController {
             optional = cursoAlumnoService.findByIdAlumno(alumnoId);
             if (optional == null || optional.isEmpty());
         } catch (Exception e) {
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }
@@ -109,10 +109,10 @@ public class CursoAlumnoRestController {
     })
     @RequestMapping(value = "/agregar-curso-alumno", method = RequestMethod.POST)
     public ResponseEntity<?> post(@Valid @RequestBody CursoAlumnoModel cursoAlumnoModel, BindingResult result) {
-        if(new Alumnos().validIdAlumno(cursoAlumnoModel.getAlumnoId().intValue()));
+        if(Alumnos.getInstance().validIdAlumno(cursoAlumnoModel.getAlumnoId().intValue()));
         
         if (result.hasErrors()) {
-            return new Auxiliar().mensajes_error(result);
+            return Auxiliar.getInstance().mensajes_error(result);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(cursoAlumnoService.save(cursoAlumnoModel));
     }
@@ -129,13 +129,13 @@ public class CursoAlumnoRestController {
             optional = cursoAlumnoService.findById(id);
             if (optional == null || optional.isEmpty());
         } catch (Exception e) {
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         
-        if(new Alumnos().validIdAlumno(cursoAlumnoModel.getAlumnoId().intValue()));
+        if(Alumnos.getInstance().validIdAlumno(cursoAlumnoModel.getAlumnoId().intValue()));
 
         if (result.hasErrors()) {
-            return new Auxiliar().mensajes_error(result);
+            return Auxiliar.getInstance().mensajes_error(result);
         }
 
         CursoAlumnoModel cursoAlumnoModel_db = optional.get();
@@ -157,7 +157,7 @@ public class CursoAlumnoRestController {
             if (optional == null || optional.isEmpty());
             cursoAlumnoService.deleteById(id);
         } catch (Exception e) {
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }

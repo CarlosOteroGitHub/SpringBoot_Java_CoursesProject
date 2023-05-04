@@ -64,7 +64,7 @@ public class CursoRestController {
             for (int i = 0; i < lista.size(); i++) {
                 List<CursoAlumnoModel> alumnos = (List<CursoAlumnoModel>) lista.get(i).getCursoAlumnos();
                 alumnos.forEach(x -> {
-                    String alumnoName = new Alumnos().getAlumnoName(x.getAlumnoId().intValue());
+                    String alumnoName = Alumnos.getInstance().getAlumnoName(x.getAlumnoId().intValue());
                     x.setAlumnoNombre(alumnoName);
                 });
             }
@@ -87,11 +87,11 @@ public class CursoRestController {
             if (optional == null || optional.isEmpty());
             List<CursoAlumnoModel> alumnos = (List<CursoAlumnoModel>) optional.get().getCursoAlumnos();
             alumnos.forEach(x -> {
-                String alumnoName = new Alumnos().getAlumnoName(x.getAlumnoId().intValue());
+                String alumnoName = Alumnos.getInstance().getAlumnoName(x.getAlumnoId().intValue());
                 x.setAlumnoNombre(alumnoName);
             });
         } catch (Exception e) {
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }
@@ -109,11 +109,11 @@ public class CursoRestController {
             if (optional == null || optional.isEmpty());
             List<CursoAlumnoModel> alumnos = (List<CursoAlumnoModel>) optional.get().getCursoAlumnos();
             alumnos.forEach(x -> {
-                String alumnoName = new Alumnos().getAlumnoName(x.getAlumnoId().intValue());
+                String alumnoName = Alumnos.getInstance().getAlumnoName(x.getAlumnoId().intValue());
                 x.setAlumnoNombre(alumnoName);
             });
         } catch (Exception e) {
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }
@@ -144,7 +144,7 @@ public class CursoRestController {
     @RequestMapping(value = "/agregar-curso", method = RequestMethod.POST)
     public ResponseEntity<?> post(@Valid @RequestBody CursoModel cursoModel, BindingResult result) {
         if (result.hasErrors()) {
-            return new Auxiliar().mensajes_error(result);
+            return Auxiliar.getInstance().mensajes_error(result);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(cursoService.save(cursoModel));
     }
@@ -161,11 +161,11 @@ public class CursoRestController {
             optional = cursoService.findById(id);
             if (optional == null || optional.isEmpty());
         } catch (Exception e) {
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
 
         if (result.hasErrors()) {
-            return new Auxiliar().mensajes_error(result);
+            return Auxiliar.getInstance().mensajes_error(result);
         }
 
         CursoModel cursoModel_db = optional.get();
@@ -187,7 +187,7 @@ public class CursoRestController {
             if (optional == null || optional.isEmpty());
             cursoService.deleteById(id);
         } catch (Exception e) {
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }

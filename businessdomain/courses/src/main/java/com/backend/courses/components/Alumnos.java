@@ -10,27 +10,27 @@ import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 
 public class Alumnos {
-    
+
+    private static Alumnos instance = null;
+
     public boolean validIdAlumno(int id) {
         boolean bandera = true;
-        HttpClientCommunication a = new HttpClientCommunication();
-        WebClient build = a.getWebClientBuilder().clientConnector(new ReactorClientHttpConnector(a.getHttpClient()))
+        WebClient build = HttpClientCommunication.getInstance().getWebClientBuilder().clientConnector(new ReactorClientHttpConnector(HttpClientCommunication.getInstance().getHttpClient()))
                 .baseUrl("http://localhost:8081/detalle-alumno")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8081/detalle-alumno"))
                 .build();
         JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
                 .retrieve().bodyToMono(JsonNode.class).block();
-        
-        if(block.get("id").asText().isEmpty()){
+
+        if (block.get("id").asText().isEmpty()) {
             bandera = false;
         }
         return bandera;
     }
 
     public String getAlumnoName(int id) {
-        HttpClientCommunication a = new HttpClientCommunication();
-        WebClient build = a.getWebClientBuilder().clientConnector(new ReactorClientHttpConnector(a.getHttpClient()))
+        WebClient build = HttpClientCommunication.getInstance().getWebClientBuilder().clientConnector(new ReactorClientHttpConnector(HttpClientCommunication.getInstance().getHttpClient()))
                 .baseUrl("http://localhost:8081/detalle-alumno")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8081/detalle-alumno"))
@@ -42,5 +42,12 @@ public class Alumnos {
         sb.append(" ");
         sb.append(block.get("apellido").asText());
         return sb.toString();
+    }
+
+    public static Alumnos getInstance() {
+        if (instance == null) {
+            instance = new Alumnos();
+        }
+        return instance;
     }
 }

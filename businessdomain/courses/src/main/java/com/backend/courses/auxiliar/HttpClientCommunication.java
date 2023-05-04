@@ -10,9 +10,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 
 public class HttpClientCommunication {
-    
+
+    private static HttpClientCommunication instance = null;
     private final WebClient.Builder webClientBuilder = WebClient.builder();
-    
+
     HttpClient httpClient = HttpClient.create()
             .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000)
             .option(ChannelOption.SO_KEEPALIVE, true)
@@ -27,8 +28,15 @@ public class HttpClientCommunication {
     public WebClient.Builder getWebClientBuilder() {
         return webClientBuilder;
     }
-    
+
     public HttpClient getHttpClient() {
         return httpClient;
+    }
+
+    public static HttpClientCommunication getInstance() {
+        if (instance == null) {
+            instance = new HttpClientCommunication();
+        }
+        return instance;
     }
 }
