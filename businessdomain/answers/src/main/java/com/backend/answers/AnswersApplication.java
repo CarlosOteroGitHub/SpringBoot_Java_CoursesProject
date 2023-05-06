@@ -32,6 +32,6 @@ public class AnswersApplication {
 /*
 
 URL Swagger: http://localhost:8084/swagger/index.html
-java -jar
+java -jar C:\Users\carlo\.m2\repository\com\backend\answers\0.0.1-SNAPSHOT\answers-0.0.1-SNAPSHOT.jar
 
 */

@@ -1,6 +1,7 @@
 package com.backend.alumns.controllers;
 
 import com.backend.alumns.auxiliar.ApiExceptionHandler;
+import com.backend.alumns.auxiliar.Auxiliar;
 import com.backend.alumns.models.AlumnoModel;
 import com.backend.alumns.services.AlumnoService;
 import java.util.Optional;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.backend.alumns.auxiliar.Auxiliar;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -77,7 +77,7 @@ public class AlumnoRestController {
             optional = alumnoService.findById(id);
             if (optional == null || optional.isEmpty());
         } catch(Exception e){
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }
@@ -94,7 +94,7 @@ public class AlumnoRestController {
             optional = alumnoService.findById(id);
             if (optional == null || optional.isEmpty());
         } catch(Exception e){
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
 
         Resource imagen = new ByteArrayResource(optional.get().getFoto());
@@ -108,7 +108,7 @@ public class AlumnoRestController {
     @RequestMapping(value = "/agregar-alumno", method = RequestMethod.POST)
     public ResponseEntity<?> post(@Valid @RequestBody AlumnoModel alumnoModel, BindingResult result) {
         if (result.hasErrors()) {
-            return new Auxiliar().mensajes_error(result);
+            return Auxiliar.getInstance().mensajes_error(result);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(alumnoService.save(alumnoModel));
     }
@@ -137,11 +137,11 @@ public class AlumnoRestController {
             optional = alumnoService.findById(id);
             if (optional == null || optional.isEmpty());
         } catch(Exception e){
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         
         if (result.hasErrors()) {
-            return new Auxiliar().mensajes_error(result);
+            return Auxiliar.getInstance().mensajes_error(result);
         }
 
         AlumnoModel alumnoModel_db = optional.get();
@@ -165,11 +165,11 @@ public class AlumnoRestController {
             optional = alumnoService.findById(id);
             if (optional == null || optional.isEmpty());
         } catch(Exception e){
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         
         if (result.hasErrors()) {
-            return new Auxiliar().mensajes_error(result);
+            return Auxiliar.getInstance().mensajes_error(result);
         }
 
         AlumnoModel alumnoModel_db = optional.get();
@@ -198,7 +198,7 @@ public class AlumnoRestController {
             if (optional == null || optional.isEmpty());
             alumnoService.deleteById(id);
         } catch(Exception e){
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }

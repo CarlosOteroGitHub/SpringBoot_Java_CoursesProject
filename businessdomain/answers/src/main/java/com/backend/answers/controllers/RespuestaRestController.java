@@ -71,7 +71,7 @@ public class RespuestaRestController {
             optional = respuestaService.findById(id);
             if (optional == null || optional.isEmpty());
         } catch(Exception e){
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }
@@ -83,7 +83,7 @@ public class RespuestaRestController {
     @RequestMapping(value = "/agregar-respuesta", method = RequestMethod.POST)
     public ResponseEntity<?> post(@Valid @RequestBody RespuestaModel respuestaModel, BindingResult result) {
         if(result.hasErrors()){
-            return new Auxiliar().mensajes_error(result);
+            return Auxiliar.getInstance().mensajes_error(result);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(respuestaService.save(respuestaModel));
     }
@@ -100,11 +100,11 @@ public class RespuestaRestController {
             optional = respuestaService.findById(id);
             if (optional == null || optional.isEmpty());
         } catch(Exception e){
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         
         if(result.hasErrors()){
-            return new Auxiliar().mensajes_error(result);
+            return Auxiliar.getInstance().mensajes_error(result);
         }
 
         RespuestaModel respuestaModel_db = optional.get();
@@ -126,7 +126,7 @@ public class RespuestaRestController {
             if (optional == null || optional.isEmpty());
             respuestaService.deleteById(id);
         } catch(Exception e){
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }

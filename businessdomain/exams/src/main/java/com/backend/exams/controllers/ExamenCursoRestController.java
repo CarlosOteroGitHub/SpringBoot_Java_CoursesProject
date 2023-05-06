@@ -3,10 +3,8 @@ package com.backend.exams.controllers;
 import com.backend.exams.auxiliar.ApiExceptionHandler;
 import com.backend.exams.auxiliar.Auxiliar;
 import com.backend.exams.components.Cursos;
-import com.backend.exams.components.Respuestas;
 import com.backend.exams.models.ExamenCursoModel;
-import com.backend.exams.models.PreguntaModel;
-import com.backend.exams.services.PreguntaService;
+import com.backend.exams.services.ExamenCursoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -27,120 +25,121 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-@Tag(name = "API Pregunta", description = "API´s del Servicio Preguntas")
+@Tag(name = "API Examenes - Cursos", description = "API´s del Servicio Examenes - Cursos")
 @RestController
-public class PreguntaRestController {
+public class ExamenCursoRestController {
     
     @Autowired
-    PreguntaService preguntaService;
-    
-    @Operation(summary = "Retorna el Template HTML del Servicio", description = "API para Retornar el Template del Servicio Pregunta")
+    ExamenCursoService examenCursoService;
+
+    @Operation(summary = "Retorna el Template HTML del Servicio", description = "API para Retornar el Template del Servicio Examen y Curso")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK")
     })
-    @RequestMapping(value = "/pregunta-template", method = RequestMethod.GET)
-    public ModelAndView pregunta(Model model) {
+    @RequestMapping(value = "/examen-curso-template", method = RequestMethod.GET)
+    public ModelAndView examenCurso(Model model) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("pregunta.html");
+        modelAndView.setViewName("examenCurso.html");
         return modelAndView;
     }
-
-    @Operation(summary = "Retorna un Listado de Elementos con Paginación", description = "API para Retornar el Listado de Elementos con Paginación del Servicio Pregunta")
+    
+    @Operation(summary = "Retorna un Listado de Elementos con Paginación", description = "API para Retornar el Listado de Elementos con Paginación del Servicio Examen y Curso")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
         @ApiResponse(responseCode = "204", description = "HTTP Status - NoContent")
     })
-    @RequestMapping(value = "/listar-preguntas", method = RequestMethod.GET)
+    @RequestMapping(value = "/listar-examen-curso", method = RequestMethod.GET)
     public ResponseEntity<?> get(Pageable pageable) {
-        List<PreguntaModel> lista;
+        List<ExamenCursoModel> lista;
         try {
-            lista = (List<PreguntaModel>) preguntaService.findAll();
-            if(lista == null || lista.isEmpty());
-            for (int i = 0; i < lista.size(); i++) {
-                List<ExamenCursoModel> cursos = (List<ExamenCursoModel>) lista.get(i).getExamen().getExamenCursos();
-                cursos.forEach(x -> {
-                    String cursoName = Cursos.getInstance().getCursoName(x.getCursoId().intValue());
-                    x.setCursoNombre(cursoName);
-                });
-            }
+            lista = (List<ExamenCursoModel>) examenCursoService.findAll();
+            if (lista == null || lista.isEmpty());
+            lista.forEach(x -> {
+                String cursoName = Cursos.getInstance().getCursoName(x.getCursoId().intValue());
+                x.setCursoNombre(cursoName);
+            });
         } catch (Exception e) {
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok().body(preguntaService.findAll(pageable));
+        return ResponseEntity.ok().body(examenCursoService.findAll(pageable));
     }
     
-    @Operation(summary = "Retorna el Detalle de un Elemento por ID", description = "API para Retornar el Detalle de un Elemento por ID del Servicio Pregunta")
+    @Operation(summary = "Retorna el Detalle de un Elemento por ID", description = "API para Retornar el Detalle de un Elemento por ID del Servicio Examen y Curso")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
         @ApiResponse(responseCode = "404", description = "HTTP Status - NotFound")
     })
-    @RequestMapping(value = "/detalle-pregunta/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/detalle-examen-curso/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getID(@PathVariable long id) {
-        Optional<PreguntaModel> optional;
+        Optional<ExamenCursoModel> optional;
         try {
-            optional = preguntaService.findById(id);
+            optional = examenCursoService.findById(id);
             if (optional == null || optional.isEmpty());
-            List<ExamenCursoModel> cursos = (List<ExamenCursoModel>) optional.get().getExamen().getExamenCursos();
-            cursos.forEach(x -> {
+            List<ExamenCursoModel> alumnos = (List<ExamenCursoModel>) optional.get().getExamen().getExamenCursos();
+            alumnos.forEach(x -> {
                 String cursoName = Cursos.getInstance().getCursoName(x.getCursoId().intValue());
                 x.setCursoNombre(cursoName);
             });
-        } catch(Exception e){
+        } catch (Exception e) {
             return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }
 
-    @Operation(summary = "Agrega un Nuevo Elemento", description = "API para Agregar un Nuevo Elemento al Servicio Pregunta")
+    @Operation(summary = "Agrega un Nuevo Elemento", description = "API para Agregar un Nuevo Elemento al Servicio Examen y Curso")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK")
     })
-    @RequestMapping(value = "/agregar-pregunta", method = RequestMethod.POST)
-    public ResponseEntity<?> post(@Valid @RequestBody PreguntaModel preguntaModel, BindingResult result) {
+    @RequestMapping(value = "/agregar-examen-curso", method = RequestMethod.POST)
+    public ResponseEntity<?> post(@Valid @RequestBody ExamenCursoModel cursoAlumnoModel, BindingResult result) {
+        if(Cursos.getInstance().validIdCurso(cursoAlumnoModel.getCursoId().intValue()));
+        
         if (result.hasErrors()) {
             return Auxiliar.getInstance().mensajes_error(result);
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(preguntaService.save(preguntaModel));
+        return ResponseEntity.status(HttpStatus.CREATED).body(examenCursoService.save(cursoAlumnoModel));
     }
-
-    @Operation(summary = "Actualiza un Elemento Existente", description = "API para Actualizar un Elemento Existente en el Servicio Pregunta")
+    
+    @Operation(summary = "Actualiza un Elemento Existente", description = "API para Actualizar un Elemento Existente en el Servicio Examen y Curso")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
         @ApiResponse(responseCode = "404", description = "HTTP Status - NotFound")
     })
-    @RequestMapping(value = "/actualizar-pregunta/{id}", method = RequestMethod.PATCH)
-    public ResponseEntity<?> patch(@Valid @RequestBody PreguntaModel preguntaModel, BindingResult result, @PathVariable long id) {
-        Optional<PreguntaModel> optional;
+    @RequestMapping(value = "/actualizar-examen-curso/{id}", method = RequestMethod.PATCH)
+    public ResponseEntity<?> patch(@Valid @RequestBody ExamenCursoModel cursoAlumnoModel, BindingResult result, @PathVariable long id) {
+        Optional<ExamenCursoModel> optional;
         try {
-            optional = preguntaService.findById(id);
+            optional = examenCursoService.findById(id);
             if (optional == null || optional.isEmpty());
-        } catch(Exception e){
+        } catch (Exception e) {
             return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
+        
+        if(Cursos.getInstance().validIdCurso(cursoAlumnoModel.getCursoId().intValue()));
         
         if (result.hasErrors()) {
             return Auxiliar.getInstance().mensajes_error(result);
         }
 
-        PreguntaModel preguntaModel_db = optional.get();
-        preguntaModel_db.setTexto(preguntaModel.getTexto());
-
-        return ResponseEntity.status(HttpStatus.OK).body(preguntaService.save(preguntaModel_db));
+        ExamenCursoModel examenCursoModel_db = optional.get();
+        examenCursoModel_db.setCursoId(cursoAlumnoModel.getCursoId());
+        
+        return ResponseEntity.status(HttpStatus.OK).body(examenCursoService.save(examenCursoModel_db));
     }
 
-    @Operation(summary = "Elimina un Elemento Existente", description = "API para Eliminar un Elemento Existente en el Servicio Pregunta")
+    @Operation(summary = "Elimina un Elemento Existente", description = "API para Eliminar un Elemento Existente en el Servicio Examen y Curso")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "HTTP Status - OK"),
         @ApiResponse(responseCode = "404", description = "HTTP Status - NotFound")
     })
-    @RequestMapping(value = "/eliminar-pregunta/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/eliminar-examen-curso/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable long id) {
-        Optional<PreguntaModel> optional;
+        Optional<ExamenCursoModel> optional;
         try {
-            optional = preguntaService.findById(id);
+            optional = examenCursoService.findById(id);
             if (optional == null || optional.isEmpty());
-            preguntaService.deleteById(id);
-        } catch(Exception e){
+            examenCursoService.deleteById(id);
+        } catch (Exception e) {
             return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());

@@ -2381,7 +2381,7 @@
 							]
 						},
 						{
-							"name": "Agregar Cursos - Alumnos Copy",
+							"name": "Agregar Cursos - Alumnos Copy 2",
 							"request": {
 								"method": "PATCH",
 								"header": [],
@@ -2834,7 +2834,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nombre\": \"Examen de Geografía\",\r\n    \"respondido\": true,\r\n    \"asignatura\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"ASIG1\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"nombre\": \"Examen de Cálculo Integral 1\",\r\n    \"respondido\": false,\r\n    \"asignatura\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"ASIG1\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3213,19 +3213,18 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{http-exams}}/api/pregunta/:id",
+									"raw": "{{http-exams}}/detalle-pregunta/:id",
 									"host": [
 										"{{http-exams}}"
 									],
 									"path": [
-										"api",
-										"pregunta",
+										"detalle-pregunta",
 										":id"
 									],
 									"variable": [
 										{
 											"key": "id",
-											"value": "4"
+											"value": "2"
 										}
 									]
 								}
@@ -3984,6 +3983,623 @@
 									],
 									"cookie": [],
 									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Examenes - Cursos",
+					"item": [
+						{
+							"name": "Template Examenes - Cursos HTML",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http-exams}}/examen-curso-template",
+									"host": [
+										"{{http-exams}}"
+									],
+									"path": [
+										"examen-curso-template"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Template Examenes - Cursos HTML 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{http-exams}}/examen-curso-template",
+											"host": [
+												"{{http-exams}}"
+											],
+											"path": [
+												"examen-curso-template"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html;charset=UTF-8"
+										},
+										{
+											"key": "Content-Language",
+											"value": "es-MX"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 06 May 2023 00:00:09 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "<!DOCTYPE HTML>\n<!--\nClick nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license\nClick nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template\n-->\n<html>\n    <head>\n        <meta charset=\"UTF-8\">\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n        <title>Spring Boot</title>\n    </head>\n    <body>\n        <h3>Microservicio - Examenes y Cursos</h3>\n    </body>\n</html>"
+								}
+							]
+						},
+						{
+							"name": "Listar Examenes - Cursos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http-exams}}/listar-examen-curso?page=0&size=10",
+									"host": [
+										"{{http-exams}}"
+									],
+									"path": [
+										"listar-examen-curso"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Listar Examenes - Cursos 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{http-exams}}/listar-examen-curso?page=0&size=10",
+											"host": [
+												"{{http-exams}}"
+											],
+											"path": [
+												"listar-examen-curso"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 06 May 2023 01:23:40 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"cursoId\": 2,\n            \"cursoNombre\": \"Cálculo Diferencial\",\n            \"examen\": {\n                \"id\": 1,\n                \"nombre\": \"Examen de Geografía\",\n                \"createAt\": \"2023-02-18T08:25:06.000+00:00\",\n                \"respondido\": false,\n                \"asignatura\": {\n                    \"id\": 1,\n                    \"nombre\": \"ASIG42\",\n                    \"examenes\": [\n                        {\n                            \"id\": 1,\n                            \"nombre\": \"Examen de Geografía\",\n                            \"createAt\": \"2023-02-18T08:25:06.000+00:00\",\n                            \"respondido\": false,\n                            \"preguntas\": [\n                                {\n                                    \"id\": 2,\n                                    \"texto\": \"¿Cúal es la capital de Noruega?\"\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"texto\": \"¿Cúal es el rio más grande de México?\"\n                                }\n                            ],\n                            \"examenCursos\": [\n                                {\n                                    \"id\": 1,\n                                    \"cursoId\": 2,\n                                    \"cursoNombre\": \"Cálculo Diferencial\"\n                                },\n                                {\n                                    \"id\": 3,\n                                    \"cursoId\": 3,\n                                    \"cursoNombre\": \"Cálculo Vectorial\"\n                                }\n                            ],\n                            \"hibernateLazyInitializer\": {}\n                        },\n                        {\n                            \"id\": 4,\n                            \"nombre\": \"Examen de Cálculo Integral 1\",\n                            \"createAt\": \"2023-05-06T00:22:30.000+00:00\",\n                            \"respondido\": false,\n                            \"preguntas\": [],\n                            \"examenCursos\": [\n                                {\n                                    \"id\": 4,\n                                    \"cursoId\": 1,\n                                    \"cursoNombre\": \"Cálculo Integral\"\n                                }\n                            ],\n                            \"hibernateLazyInitializer\": {}\n                        }\n                    ]\n                },\n                \"preguntas\": [\n                    {\n                        \"id\": 2,\n                        \"texto\": \"¿Cúal es la capital de Noruega?\"\n                    },\n                    {\n                        \"id\": 4,\n                        \"texto\": \"¿Cúal es el rio más grande de México?\"\n                    }\n                ],\n                \"examenCursos\": [\n                    {\n                        \"id\": 1,\n                        \"cursoId\": 2,\n                        \"cursoNombre\": \"Cálculo Diferencial\"\n                    },\n                    {\n                        \"id\": 3,\n                        \"cursoId\": 3,\n                        \"cursoNombre\": \"Cálculo Vectorial\"\n                    }\n                ]\n            }\n        },\n        {\n            \"id\": 3,\n            \"cursoId\": 3,\n            \"cursoNombre\": \"Cálculo Vectorial\",\n            \"examen\": {\n                \"id\": 1,\n                \"nombre\": \"Examen de Geografía\",\n                \"createAt\": \"2023-02-18T08:25:06.000+00:00\",\n                \"respondido\": false,\n                \"asignatura\": {\n                    \"id\": 1,\n                    \"nombre\": \"ASIG42\",\n                    \"examenes\": [\n                        {\n                            \"id\": 1,\n                            \"nombre\": \"Examen de Geografía\",\n                            \"createAt\": \"2023-02-18T08:25:06.000+00:00\",\n                            \"respondido\": false,\n                            \"preguntas\": [\n                                {\n                                    \"id\": 2,\n                                    \"texto\": \"¿Cúal es la capital de Noruega?\"\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"texto\": \"¿Cúal es el rio más grande de México?\"\n                                }\n                            ],\n                            \"examenCursos\": [\n                                {\n                                    \"id\": 1,\n                                    \"cursoId\": 2,\n                                    \"cursoNombre\": \"Cálculo Diferencial\"\n                                },\n                                {\n                                    \"id\": 3,\n                                    \"cursoId\": 3,\n                                    \"cursoNombre\": \"Cálculo Vectorial\"\n                                }\n                            ],\n                            \"hibernateLazyInitializer\": {}\n                        },\n                        {\n                            \"id\": 4,\n                            \"nombre\": \"Examen de Cálculo Integral 1\",\n                            \"createAt\": \"2023-05-06T00:22:30.000+00:00\",\n                            \"respondido\": false,\n                            \"preguntas\": [],\n                            \"examenCursos\": [\n                                {\n                                    \"id\": 4,\n                                    \"cursoId\": 1,\n                                    \"cursoNombre\": \"Cálculo Integral\"\n                                }\n                            ],\n                            \"hibernateLazyInitializer\": {}\n                        }\n                    ]\n                },\n                \"preguntas\": [\n                    {\n                        \"id\": 2,\n                        \"texto\": \"¿Cúal es la capital de Noruega?\"\n                    },\n                    {\n                        \"id\": 4,\n                        \"texto\": \"¿Cúal es el rio más grande de México?\"\n                    }\n                ],\n                \"examenCursos\": [\n                    {\n                        \"id\": 1,\n                        \"cursoId\": 2,\n                        \"cursoNombre\": \"Cálculo Diferencial\"\n                    },\n                    {\n                        \"id\": 3,\n                        \"cursoId\": 3,\n                        \"cursoNombre\": \"Cálculo Vectorial\"\n                    }\n                ]\n            }\n        },\n        {\n            \"id\": 4,\n            \"cursoId\": 1,\n            \"cursoNombre\": \"Cálculo Integral\",\n            \"examen\": {\n                \"id\": 4,\n                \"nombre\": \"Examen de Cálculo Integral 1\",\n                \"createAt\": \"2023-05-06T00:22:30.000+00:00\",\n                \"respondido\": false,\n                \"asignatura\": {\n                    \"id\": 1,\n                    \"nombre\": \"ASIG42\",\n                    \"examenes\": [\n                        {\n                            \"id\": 1,\n                            \"nombre\": \"Examen de Geografía\",\n                            \"createAt\": \"2023-02-18T08:25:06.000+00:00\",\n                            \"respondido\": false,\n                            \"preguntas\": [\n                                {\n                                    \"id\": 2,\n                                    \"texto\": \"¿Cúal es la capital de Noruega?\"\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"texto\": \"¿Cúal es el rio más grande de México?\"\n                                }\n                            ],\n                            \"examenCursos\": [\n                                {\n                                    \"id\": 1,\n                                    \"cursoId\": 2,\n                                    \"cursoNombre\": \"Cálculo Diferencial\"\n                                },\n                                {\n                                    \"id\": 3,\n                                    \"cursoId\": 3,\n                                    \"cursoNombre\": \"Cálculo Vectorial\"\n                                }\n                            ],\n                            \"hibernateLazyInitializer\": {}\n                        },\n                        {\n                            \"id\": 4,\n                            \"nombre\": \"Examen de Cálculo Integral 1\",\n                            \"createAt\": \"2023-05-06T00:22:30.000+00:00\",\n                            \"respondido\": false,\n                            \"preguntas\": [],\n                            \"examenCursos\": [\n                                {\n                                    \"id\": 4,\n                                    \"cursoId\": 1,\n                                    \"cursoNombre\": \"Cálculo Integral\"\n                                }\n                            ],\n                            \"hibernateLazyInitializer\": {}\n                        }\n                    ]\n                },\n                \"preguntas\": [],\n                \"examenCursos\": [\n                    {\n                        \"id\": 4,\n                        \"cursoId\": 1,\n                        \"cursoNombre\": \"Cálculo Integral\"\n                    }\n                ]\n            }\n        }\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"empty\": true,\n            \"sorted\": false,\n            \"unsorted\": true\n        },\n        \"offset\": 0,\n        \"pageSize\": 10,\n        \"pageNumber\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": true,\n    \"totalElements\": 3,\n    \"totalPages\": 1,\n    \"size\": 10,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": true,\n        \"sorted\": false,\n        \"unsorted\": true\n    },\n    \"first\": true,\n    \"numberOfElements\": 3,\n    \"empty\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "Detalle Examenes - Cursos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http-exams}}/detalle-examen-curso/:id",
+									"host": [
+										"{{http-exams}}"
+									],
+									"path": [
+										"detalle-examen-curso",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Detalle Examenes - Cursos 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{http-exams}}/detalle-examen-curso/:id",
+											"host": [
+												"{{http-exams}}"
+											],
+											"path": [
+												"detalle-examen-curso",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "4"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 06 May 2023 01:26:42 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 4,\n    \"cursoId\": 1,\n    \"cursoNombre\": \"Cálculo Integral\",\n    \"examen\": {\n        \"id\": 4,\n        \"nombre\": \"Examen de Cálculo Integral 1\",\n        \"createAt\": \"2023-05-06T00:22:30.000+00:00\",\n        \"respondido\": false,\n        \"asignatura\": {\n            \"id\": 1,\n            \"nombre\": \"ASIG42\",\n            \"examenes\": [\n                {\n                    \"id\": 1,\n                    \"nombre\": \"Examen de Geografía\",\n                    \"createAt\": \"2023-02-18T08:25:06.000+00:00\",\n                    \"respondido\": false,\n                    \"preguntas\": [\n                        {\n                            \"id\": 2,\n                            \"texto\": \"¿Cúal es la capital de Noruega?\"\n                        },\n                        {\n                            \"id\": 4,\n                            \"texto\": \"¿Cúal es el rio más grande de México?\"\n                        }\n                    ],\n                    \"examenCursos\": [\n                        {\n                            \"id\": 1,\n                            \"cursoId\": 2,\n                            \"cursoNombre\": null\n                        },\n                        {\n                            \"id\": 3,\n                            \"cursoId\": 3,\n                            \"cursoNombre\": null\n                        }\n                    ]\n                },\n                {\n                    \"id\": 4,\n                    \"nombre\": \"Examen de Cálculo Integral 1\",\n                    \"createAt\": \"2023-05-06T00:22:30.000+00:00\",\n                    \"respondido\": false,\n                    \"preguntas\": [],\n                    \"examenCursos\": [\n                        {\n                            \"id\": 4,\n                            \"cursoId\": 1,\n                            \"cursoNombre\": \"Cálculo Integral\"\n                        }\n                    ],\n                    \"hibernateLazyInitializer\": {}\n                }\n            ]\n        },\n        \"preguntas\": [],\n        \"examenCursos\": [\n            {\n                \"id\": 4,\n                \"cursoId\": 1,\n                \"cursoNombre\": \"Cálculo Integral\"\n            }\n        ]\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Agregar Examenes - Cursos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cursoId\": 1,\r\n    \"examen\": \r\n        {\r\n            \"id\": 4,\r\n            \"nombre\": \"Examen de Cálculo Integral 1\"\r\n        }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http-exams}}/agregar-examen-curso",
+									"host": [
+										"{{http-exams}}"
+									],
+									"path": [
+										"agregar-examen-curso"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Agregar Examenes - Cursos 201",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"cursoId\": 1,\r\n    \"examen\": \r\n        {\r\n            \"id\": 4,\r\n            \"nombre\": \"Examen de Cálculo Integral 1\"\r\n        }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{http-exams}}/agregar-examen-curso",
+											"host": [
+												"{{http-exams}}"
+											],
+											"path": [
+												"agregar-examen-curso"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 06 May 2023 00:23:22 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 4,\n    \"cursoId\": 1,\n    \"cursoNombre\": null,\n    \"examen\": {\n        \"id\": 4,\n        \"nombre\": \"Examen de Cálculo Integral 1\",\n        \"createAt\": null,\n        \"respondido\": false,\n        \"asignatura\": null,\n        \"preguntas\": []\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Agregar Examenes - Cursos",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cursoId\": 3,\r\n    \"examen\": \r\n        {\r\n            \"id\": 4,\r\n            \"nombre\": \"Examen de Cálculo Integral 1\"\r\n        }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http-exams}}/actualizar-examen-curso/:id",
+									"host": [
+										"{{http-exams}}"
+									],
+									"path": [
+										"actualizar-examen-curso",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Agregar Examenes - Cursos 200",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"cursoId\": 3,\r\n    \"examen\": \r\n        {\r\n            \"id\": 4,\r\n            \"nombre\": \"Examen de Cálculo Integral 1\"\r\n        }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{http-exams}}/actualizar-examen-curso/:id",
+											"host": [
+												"{{http-exams}}"
+											],
+											"path": [
+												"actualizar-examen-curso",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 06 May 2023 00:25:38 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 3,\n    \"cursoId\": 3,\n    \"cursoNombre\": null,\n    \"examen\": {\n        \"id\": 1,\n        \"nombre\": \"Examen de Geografía\",\n        \"createAt\": \"2023-02-18T08:25:06.000+00:00\",\n        \"respondido\": false,\n        \"asignatura\": {\n            \"id\": 1,\n            \"nombre\": \"ASIG42\",\n            \"examenes\": [\n                {\n                    \"id\": 1,\n                    \"nombre\": \"Examen de Geografía\",\n                    \"createAt\": \"2023-02-18T08:25:06.000+00:00\",\n                    \"respondido\": false,\n                    \"preguntas\": [\n                        {\n                            \"id\": 2,\n                            \"texto\": \"¿Cúal es la capital de Noruega?\"\n                        },\n                        {\n                            \"id\": 4,\n                            \"texto\": \"¿Cúal es el rio más grande de México?\"\n                        }\n                    ],\n                    \"hibernateLazyInitializer\": {}\n                },\n                {\n                    \"id\": 4,\n                    \"nombre\": \"Examen de Cálculo Integral 1\",\n                    \"createAt\": \"2023-05-06T00:22:30.000+00:00\",\n                    \"respondido\": false,\n                    \"preguntas\": []\n                }\n            ]\n        },\n        \"preguntas\": [\n            {\n                \"id\": 2,\n                \"texto\": \"¿Cúal es la capital de Noruega?\"\n            },\n            {\n                \"id\": 4,\n                \"texto\": \"¿Cúal es el rio más grande de México?\"\n            }\n        ]\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Eliminar Examenes - Cursos",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{http-exams}}/eliminar-examen-curso/:id",
+									"host": [
+										"{{http-exams}}"
+									],
+									"path": [
+										"eliminar-examen-curso",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Eliminar Examenes - Cursos 200",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{http-exams}}/eliminar-examen-curso/:id",
+											"host": [
+												"{{http-exams}}"
+											],
+											"path": [
+												"eliminar-examen-curso",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 06 May 2023 00:20:37 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 2,\n    \"cursoId\": 3,\n    \"cursoNombre\": null,\n    \"examen\": {\n        \"id\": 1,\n        \"nombre\": \"Examen de Geografía\",\n        \"createAt\": \"2023-02-18T08:25:06.000+00:00\",\n        \"respondido\": false,\n        \"asignatura\": {\n            \"id\": 1,\n            \"nombre\": \"ASIG42\",\n            \"examenes\": [\n                {\n                    \"id\": 1,\n                    \"nombre\": \"Examen de Geografía\",\n                    \"createAt\": \"2023-02-18T08:25:06.000+00:00\",\n                    \"respondido\": false,\n                    \"preguntas\": [\n                        {\n                            \"id\": 2,\n                            \"texto\": \"¿Cúal es la capital de Noruega?\"\n                        },\n                        {\n                            \"id\": 4,\n                            \"texto\": \"¿Cúal es el rio más grande de México?\"\n                        }\n                    ],\n                    \"hibernateLazyInitializer\": {}\n                }\n            ]\n        },\n        \"preguntas\": [\n            {\n                \"id\": 2,\n                \"texto\": \"¿Cúal es la capital de Noruega?\"\n            },\n            {\n                \"id\": 4,\n                \"texto\": \"¿Cúal es el rio más grande de México?\"\n            }\n        ]\n    }\n}"
 								}
 							]
 						}

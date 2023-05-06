@@ -71,7 +71,7 @@ public class SexoRestController {
             optional = sexoService.findById(id);
             if (optional == null || optional.isEmpty());
         } catch(Exception e){
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }
@@ -83,7 +83,7 @@ public class SexoRestController {
     @RequestMapping(value = "/agregar-sexo", method = RequestMethod.POST)
     public ResponseEntity<?> post(@Valid @RequestBody SexoModel sexoModel, BindingResult result) {
         if(result.hasErrors()){
-            return new Auxiliar().mensajes_error(result);
+            return Auxiliar.getInstance().mensajes_error(result);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(sexoService.save(sexoModel));
     }
@@ -100,11 +100,11 @@ public class SexoRestController {
             optional = sexoService.findById(id);
             if (optional == null || optional.isEmpty());
         } catch(Exception e){
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         
         if(result.hasErrors()){
-            return new Auxiliar().mensajes_error(result);
+            return Auxiliar.getInstance().mensajes_error(result);
         }
 
         SexoModel sexoModel_db = optional.get();
@@ -126,7 +126,7 @@ public class SexoRestController {
             if (optional == null || optional.isEmpty());
             sexoService.deleteById(id);
         } catch(Exception e){
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }

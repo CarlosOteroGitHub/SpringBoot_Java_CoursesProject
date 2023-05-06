@@ -2,6 +2,8 @@ package com.backend.exams.controllers;
 
 import com.backend.exams.auxiliar.ApiExceptionHandler;
 import com.backend.exams.auxiliar.Auxiliar;
+import com.backend.exams.components.Cursos;
+import com.backend.exams.models.ExamenCursoModel;
 import com.backend.exams.models.ExamenModel;
 import com.backend.exams.services.ExamenService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -53,6 +55,13 @@ public class ExamenRestController {
         try {
             lista = (List<ExamenModel>) examenService.findAll();
             if(lista == null || lista.isEmpty());
+            for (int i = 0; i < lista.size(); i++) {
+                List<ExamenCursoModel> cursos = (List<ExamenCursoModel>) lista.get(i).getExamenCursos();
+                cursos.forEach(x -> {
+                    String cursoName = Cursos.getInstance().getCursoName(x.getCursoId().intValue());
+                    x.setCursoNombre(cursoName);
+                });
+            }
         } catch (Exception e) {
             return ResponseEntity.noContent().build();
         }
@@ -70,8 +79,13 @@ public class ExamenRestController {
         try {
             optional = examenService.findById(id);
             if (optional == null || optional.isEmpty());
+            List<ExamenCursoModel> cursos = (List<ExamenCursoModel>) optional.get().getExamenCursos();
+            cursos.forEach(x -> {
+                String cursoName = Cursos.getInstance().getCursoName(x.getCursoId().intValue());
+                x.setCursoNombre(cursoName);
+            });
         } catch(Exception e){
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }
@@ -83,7 +97,7 @@ public class ExamenRestController {
     @RequestMapping(value = "/agregar-examen", method = RequestMethod.POST)
     public ResponseEntity<?> post(@Valid @RequestBody ExamenModel examenModel, BindingResult result) {
         if (result.hasErrors()) {
-            return new Auxiliar().mensajes_error(result);
+            return Auxiliar.getInstance().mensajes_error(result);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(examenService.save(examenModel));
     }
@@ -100,11 +114,11 @@ public class ExamenRestController {
             optional = examenService.findById(id);
             if (optional == null || optional.isEmpty());
         } catch(Exception e){
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
 
         if (result.hasErrors()) {
-            return new Auxiliar().mensajes_error(result);
+            return Auxiliar.getInstance().mensajes_error(result);
         }
 
         ExamenModel examenModel_db = optional.get();
@@ -133,7 +147,7 @@ public class ExamenRestController {
             if (optional == null || optional.isEmpty());
             examenService.deleteById(id);
         } catch(Exception e){
-            return new ApiExceptionHandler().handleNotFoundException(e);
+            return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
         return ResponseEntity.ok(optional.get());
     }

@@ -60,6 +60,10 @@ public class ExamenModel {
     @JsonIgnoreProperties(value = {"examen"}, allowSetters = true)
     @OneToMany(mappedBy = "examen", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PreguntaModel> preguntas;
+    
+    @JsonIgnoreProperties(value = {"examen"}, allowSetters = true)
+    @OneToMany(mappedBy = "examen", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ExamenCursoModel> examenCursos;
 
     @PrePersist
     public void prePersist() {
@@ -68,6 +72,7 @@ public class ExamenModel {
 
     public ExamenModel() {
         this.preguntas = new ArrayList<>();
+        this.examenCursos = new ArrayList<>();
     }
 
     public List<PreguntaModel> getPreguntas() {
@@ -89,6 +94,14 @@ public class ExamenModel {
     public void removePregunta(PreguntaModel preguntaModel) {
         this.preguntas.remove(preguntaModel);
         preguntaModel.setExamen(null);
+    }
+    
+    public void addExamenCurso(ExamenCursoModel examenCursoModel) {
+        this.examenCursos.add(examenCursoModel);
+    }
+
+    public void removeExamenCurso(ExamenCursoModel examenCursoModel) {
+        this.examenCursos.remove(examenCursoModel);
     }
 
     @Override

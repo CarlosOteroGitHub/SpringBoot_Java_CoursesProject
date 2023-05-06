@@ -22,10 +22,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authz) -> authz
-                .antMatchers(NO_AUTH_LIST).permitAll()
-                .antMatchers(HttpMethod.POST, "/**").authenticated()
-                .antMatchers(HttpMethod.PATCH, "/**").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/**").authenticated())
+                .antMatchers(NO_AUTH_LIST).permitAll())
                 .httpBasic(withDefaults())
                 .formLogin(withDefaults());
         return http.build();
