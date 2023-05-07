@@ -1,6 +1,6 @@
-package com.backend.exams.components;
+package com.backend.answers.components;
 
-import com.backend.exams.auxiliar.HttpClientCommunication;
+import com.backend.answers.auxiliar.HttpClientCommunication;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.Collections;
 import org.springframework.http.HttpHeaders;
@@ -9,16 +9,16 @@ import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 
-public class Respuestas {
+public class Preguntas {
     
-    private static Respuestas instance = null;
+    private static Preguntas instance = null;
     
-    public boolean validIdRespuesta(int id) {
+    public boolean validIdPregunta(int id) {
         boolean bandera = true;
         WebClient build = HttpClientCommunication.getInstance().getWebClientBuilder().clientConnector(new ReactorClientHttpConnector(HttpClientCommunication.getInstance().getHttpClient()))
-                .baseUrl("http://localhost:8084/detalle-respuesta")
+                .baseUrl("http://localhost:8083/detalle-pregunta")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8084/detalle-respuesta"))
+                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8083/detalle-pregunta"))
                 .build();
         JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
                 .retrieve().bodyToMono(JsonNode.class).block();
@@ -28,12 +28,12 @@ public class Respuestas {
         }
         return bandera;
     }
-    
-    public String getRespuestaTexto(int id) {
+
+    public String getPreguntaName(int id) {
         WebClient build = HttpClientCommunication.getInstance().getWebClientBuilder().clientConnector(new ReactorClientHttpConnector(HttpClientCommunication.getInstance().getHttpClient()))
-                .baseUrl("http://localhost:8084/detalle-respuesta")
+                .baseUrl("http://localhost:8083/detalle-pregunta")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8084/detalle-respuesta"))
+                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8083/detalle-pregunta"))
                 .build();
         JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
                 .retrieve().bodyToMono(JsonNode.class).block();
@@ -42,9 +42,9 @@ public class Respuestas {
         return sb.toString();
     }
     
-    public static Respuestas getInstance() {
+    public static Preguntas getInstance() {
         if (instance == null) {
-            instance = new Respuestas();
+            instance = new Preguntas();
         }
         return instance;
     }

@@ -3,7 +3,6 @@ package com.backend.exams.controllers;
 import com.backend.exams.auxiliar.ApiExceptionHandler;
 import com.backend.exams.auxiliar.Auxiliar;
 import com.backend.exams.components.Cursos;
-import com.backend.exams.components.Respuestas;
 import com.backend.exams.models.ExamenCursoModel;
 import com.backend.exams.models.PreguntaModel;
 import com.backend.exams.services.PreguntaService;

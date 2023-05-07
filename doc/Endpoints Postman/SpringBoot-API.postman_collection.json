@@ -4702,12 +4702,10 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8083/listar-respuestas",
-											"protocol": "http",
+											"raw": "{{http-answers}}/listar-respuestas",
 											"host": [
-												"localhost"
+												"{{http-answers}}"
 											],
-											"port": "8083",
 											"path": [
 												"listar-respuestas"
 											]
@@ -4718,6 +4716,30 @@
 									"_postman_previewlanguage": "json",
 									"header": [
 										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
 											"key": "Content-Type",
 											"value": "application/json"
 										},
@@ -4727,7 +4749,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Wed, 22 Feb 2023 07:36:39 GMT"
+											"value": "Sun, 07 May 2023 01:01:55 GMT"
 										},
 										{
 											"key": "Keep-Alive",
@@ -4739,7 +4761,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "[\n    {\n        \"id\": 1,\n        \"texto\": \"respuesta1\"\n    },\n    {\n        \"id\": 2,\n        \"texto\": \"respuesta2\"\n    }\n]"
+									"body": "{\n    \"content\": [\n        {\n            \"id\": 4,\n            \"texto\": \"Respuesta1\",\n            \"preguntaId\": 2,\n            \"preguntaTexto\": \"¿Cúal es la capital de Noruega?\"\n        },\n        {\n            \"id\": 5,\n            \"texto\": \"Respuesta2\",\n            \"preguntaId\": 4,\n            \"preguntaTexto\": \"¿Cúal es el rio más grande de México?\"\n        }\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"empty\": true,\n            \"sorted\": false,\n            \"unsorted\": true\n        },\n        \"offset\": 0,\n        \"pageSize\": 20,\n        \"pageNumber\": 0,\n        \"unpaged\": false,\n        \"paged\": true\n    },\n    \"last\": true,\n    \"totalElements\": 2,\n    \"totalPages\": 1,\n    \"size\": 20,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": true,\n        \"sorted\": false,\n        \"unsorted\": true\n    },\n    \"first\": true,\n    \"numberOfElements\": 2,\n    \"empty\": false\n}"
 								}
 							]
 						},
@@ -4760,7 +4782,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "2"
+											"value": "5"
 										}
 									]
 								}
@@ -4772,12 +4794,10 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8083/detalle-respuesta/:id",
-											"protocol": "http",
+											"raw": "{{http-answers}}/detalle-respuesta/:id",
 											"host": [
-												"localhost"
+												"{{http-answers}}"
 											],
-											"port": "8083",
 											"path": [
 												"detalle-respuesta",
 												":id"
@@ -4785,7 +4805,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "2"
+													"value": "5"
 												}
 											]
 										}
@@ -4794,6 +4814,30 @@
 									"code": 200,
 									"_postman_previewlanguage": "json",
 									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
 										{
 											"key": "Content-Type",
 											"value": "application/json"
@@ -4804,7 +4848,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Wed, 22 Feb 2023 07:37:46 GMT"
+											"value": "Sun, 07 May 2023 01:09:35 GMT"
 										},
 										{
 											"key": "Keep-Alive",
@@ -4816,7 +4860,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"id\": 2,\n    \"texto\": \"respuesta2\"\n}"
+									"body": "{\n    \"id\": 5,\n    \"texto\": \"Respuesta2\",\n    \"preguntaId\": 4,\n    \"preguntaTexto\": \"¿Cúal es el rio más grande de México?\"\n}"
 								}
 							]
 						},
@@ -4827,7 +4871,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"texto\": \"respuesta2\"\r\n}",
+									"raw": "{\r\n    \"texto\": \"respuesta3\",\r\n    \"preguntaId\": 2\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4852,7 +4896,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"texto\": \"respuesta1\"\r\n}",
+											"raw": "{\r\n    \"texto\": \"respuesta3\",\r\n    \"preguntaId\": 2\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -4860,12 +4904,10 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8083/agregar-respuesta",
-											"protocol": "http",
+											"raw": "{{http-answers}}/agregar-respuesta",
 											"host": [
-												"localhost"
+												"{{http-answers}}"
 											],
-											"port": "8083",
 											"path": [
 												"agregar-respuesta"
 											]
@@ -4876,6 +4918,30 @@
 									"_postman_previewlanguage": "json",
 									"header": [
 										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
 											"key": "Content-Type",
 											"value": "application/json"
 										},
@@ -4885,7 +4951,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Wed, 22 Feb 2023 07:36:20 GMT"
+											"value": "Sun, 07 May 2023 01:10:23 GMT"
 										},
 										{
 											"key": "Keep-Alive",
@@ -4897,7 +4963,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"id\": 1,\n    \"texto\": \"respuesta1\"\n}"
+									"body": "{\n    \"id\": 6,\n    \"texto\": \"respuesta3\",\n    \"preguntaId\": 2,\n    \"preguntaTexto\": null\n}"
 								}
 							]
 						},
@@ -4908,7 +4974,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"texto\": \"respuesta21.2\"\r\n}",
+									"raw": "{\r\n    \"texto\": \"respuesta43\",\r\n    \"preguntaId\": 2\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4927,7 +4993,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "6"
 										}
 									]
 								}
@@ -4940,7 +5006,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"texto\": \"respuesta21.2\"\r\n}",
+											"raw": "{\r\n    \"texto\": \"respuesta43\",\r\n    \"preguntaId\": 2\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -4948,12 +5014,10 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8083/actualizar-respuesta/:id",
-											"protocol": "http",
+											"raw": "{{http-answers}}/actualizar-respuesta/:id",
 											"host": [
-												"localhost"
+												"{{http-answers}}"
 											],
-											"port": "8083",
 											"path": [
 												"actualizar-respuesta",
 												":id"
@@ -4961,15 +5025,39 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "1"
+													"value": "6"
 												}
 											]
 										}
 									},
-									"status": "Created",
-									"code": 201,
+									"status": "OK",
+									"code": 200,
 									"_postman_previewlanguage": "json",
 									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
 										{
 											"key": "Content-Type",
 											"value": "application/json"
@@ -4980,7 +5068,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Thu, 23 Feb 2023 05:38:54 GMT"
+											"value": "Sun, 07 May 2023 01:10:58 GMT"
 										},
 										{
 											"key": "Keep-Alive",
@@ -4992,7 +5080,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"id\": 1,\n    \"texto\": \"respuesta21.2\"\n}"
+									"body": "{\n    \"id\": 6,\n    \"texto\": \"respuesta43\",\n    \"preguntaId\": 2,\n    \"preguntaTexto\": null\n}"
 								}
 							]
 						},
@@ -5013,7 +5101,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "6"
 										}
 									]
 								}
@@ -5025,12 +5113,10 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8083/eliminar-respuesta/:id",
-											"protocol": "http",
+											"raw": "{{http-answers}}/eliminar-respuesta/:id",
 											"host": [
-												"localhost"
+												"{{http-answers}}"
 											],
-											"port": "8083",
 											"path": [
 												"eliminar-respuesta",
 												":id"
@@ -5038,18 +5124,50 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "1"
+													"value": "6"
 												}
 											]
 										}
 									},
-									"status": "No Content",
-									"code": 204,
-									"_postman_previewlanguage": "plain",
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
 									"header": [
 										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
 											"key": "Date",
-											"value": "Thu, 23 Feb 2023 05:39:43 GMT"
+											"value": "Sun, 07 May 2023 01:11:11 GMT"
 										},
 										{
 											"key": "Keep-Alive",
@@ -5061,7 +5179,7 @@
 										}
 									],
 									"cookie": [],
-									"body": null
+									"body": "{\n    \"id\": 6,\n    \"texto\": \"respuesta43\",\n    \"preguntaId\": 2,\n    \"preguntaTexto\": null\n}"
 								}
 							]
 						}

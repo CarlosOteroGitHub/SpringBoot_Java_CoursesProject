@@ -2,6 +2,7 @@ package com.backend.answers.controllers;
 
 import com.backend.answers.auxiliar.ApiExceptionHandler;
 import com.backend.answers.auxiliar.Auxiliar;
+import com.backend.answers.components.Preguntas;
 import com.backend.answers.models.RespuestaModel;
 import com.backend.answers.services.RespuestaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -53,6 +54,10 @@ public class RespuestaRestController {
         try {
             lista = (List<RespuestaModel>) respuestaService.findAll();
             if(lista == null || lista.isEmpty());
+            lista.forEach(x -> {
+                String preguntaTexto = Preguntas.getInstance().getPreguntaName(x.getPreguntaId().intValue());
+                x.setPreguntaTexto(preguntaTexto);
+            });
         } catch (Exception e) {
             return ResponseEntity.noContent().build();
         }
@@ -70,6 +75,8 @@ public class RespuestaRestController {
         try {
             optional = respuestaService.findById(id);
             if (optional == null || optional.isEmpty());
+            String preguntaTexto = Preguntas.getInstance().getPreguntaName(optional.get().getPreguntaId().intValue());
+            optional.get().setPreguntaTexto(preguntaTexto);
         } catch(Exception e){
             return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
@@ -82,6 +89,8 @@ public class RespuestaRestController {
     })
     @RequestMapping(value = "/agregar-respuesta", method = RequestMethod.POST)
     public ResponseEntity<?> post(@Valid @RequestBody RespuestaModel respuestaModel, BindingResult result) {
+        if(Preguntas.getInstance().validIdPregunta(respuestaModel.getPreguntaId().intValue()));
+        
         if(result.hasErrors()){
             return Auxiliar.getInstance().mensajes_error(result);
         }
@@ -102,6 +111,8 @@ public class RespuestaRestController {
         } catch(Exception e){
             return ApiExceptionHandler.getInstance().handleNotFoundException(e);
         }
+        
+        if(Preguntas.getInstance().validIdPregunta(respuestaModel.getPreguntaId().intValue()));
         
         if(result.hasErrors()){
             return Auxiliar.getInstance().mensajes_error(result);
