@@ -1,5 +1,6 @@
 package com.backend.courses.components;
 
+import com.backend.courses.auxiliar.Config;
 import com.backend.courses.auxiliar.HttpClientCommunication;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.Collections;
@@ -16,9 +17,9 @@ public class Alumnos {
     public boolean validIdAlumno(int id) {
         boolean bandera = true;
         WebClient build = HttpClientCommunication.getInstance().getWebClientBuilder().clientConnector(new ReactorClientHttpConnector(HttpClientCommunication.getInstance().getHttpClient()))
-                .baseUrl("http://localhost:8081/detalle-alumno")
+                .baseUrl(Config.getInstance().getHttp_gateway() + "/api-alumno/detalle-alumno")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8081/detalle-alumno"))
+                .defaultUriVariables(Collections.singletonMap("url", Config.getInstance().getHttp_gateway() + "/api-alumno/detalle-alumno"))
                 .build();
         JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
                 .retrieve().bodyToMono(JsonNode.class).block();
@@ -31,16 +32,14 @@ public class Alumnos {
 
     public String getAlumnoName(int id) {
         WebClient build = HttpClientCommunication.getInstance().getWebClientBuilder().clientConnector(new ReactorClientHttpConnector(HttpClientCommunication.getInstance().getHttpClient()))
-                .baseUrl("http://localhost:8081/detalle-alumno")
+                .baseUrl(Config.getInstance().getHttp_gateway() + "/api-alumno/detalle-alumno")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8081/detalle-alumno"))
+                .defaultUriVariables(Collections.singletonMap("url", Config.getInstance().getHttp_gateway() + "/api-alumno/detalle-alumno"))
                 .build();
         JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
                 .retrieve().bodyToMono(JsonNode.class).block();
         StringBuilder sb = new StringBuilder(100);
-        sb.append(block.get("nombre").asText());
-        sb.append(" ");
-        sb.append(block.get("apellido").asText());
+        sb.append(block.get("nombre").asText()).append(" ").append(block.get("apellido").asText());
         return sb.toString();
     }
 
