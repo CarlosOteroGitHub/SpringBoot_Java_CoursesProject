@@ -17,9 +17,9 @@ public class Alumnos {
     public boolean validIdAlumno(int id) {
         boolean bandera = true;
         WebClient build = HttpClientCommunication.getInstance().getWebClientBuilder().clientConnector(new ReactorClientHttpConnector(HttpClientCommunication.getInstance().getHttpClient()))
-                .baseUrl(Config.getInstance().getHttp_gateway() + "/api-alumno/detalle-alumno")
+                .baseUrl(Config.getInstance().getHttp_servicio_alumno()+ "/detalle-alumno")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", Config.getInstance().getHttp_gateway() + "/api-alumno/detalle-alumno"))
+                .defaultUriVariables(Collections.singletonMap("url", Config.getInstance().getHttp_servicio_alumno() + "/detalle-alumno"))
                 .build();
         JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
                 .retrieve().bodyToMono(JsonNode.class).block();
@@ -32,9 +32,9 @@ public class Alumnos {
 
     public String getAlumnoName(int id) {
         WebClient build = HttpClientCommunication.getInstance().getWebClientBuilder().clientConnector(new ReactorClientHttpConnector(HttpClientCommunication.getInstance().getHttpClient()))
-                .baseUrl(Config.getInstance().getHttp_gateway() + "/api-alumno/detalle-alumno")
+                .baseUrl(Config.getInstance().getHttp_servicio_alumno() + "/detalle-alumno")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", Config.getInstance().getHttp_gateway() + "/api-alumno/detalle-alumno"))
+                .defaultUriVariables(Collections.singletonMap("url", Config.getInstance().getHttp_servicio_alumno() + "/detalle-alumno"))
                 .build();
         JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
                 .retrieve().bodyToMono(JsonNode.class).block();

@@ -17,9 +17,9 @@ public class Preguntas {
     public boolean validIdPregunta(int id) {
         boolean bandera = true;
         WebClient build = HttpClientCommunication.getInstance().getWebClientBuilder().clientConnector(new ReactorClientHttpConnector(HttpClientCommunication.getInstance().getHttpClient()))
-                .baseUrl(Config.getInstance().getHttp_gateway() + "/api-pregunta/detalle-pregunta")
+                .baseUrl(Config.getInstance().getHttp_servicio_pregunta()+ "/detalle-pregunta")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", Config.getInstance().getHttp_gateway() + "/api-pregunta/detalle-pregunta"))
+                .defaultUriVariables(Collections.singletonMap("url", Config.getInstance().getHttp_servicio_pregunta() + "/detalle-pregunta"))
                 .build();
         JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
                 .retrieve().bodyToMono(JsonNode.class).block();
@@ -32,9 +32,9 @@ public class Preguntas {
 
     public String getPreguntaName(int id) {
         WebClient build = HttpClientCommunication.getInstance().getWebClientBuilder().clientConnector(new ReactorClientHttpConnector(HttpClientCommunication.getInstance().getHttpClient()))
-                .baseUrl(Config.getInstance().getHttp_gateway() + "/api-pregunta/detalle-pregunta")
+                .baseUrl(Config.getInstance().getHttp_servicio_pregunta() + "/detalle-pregunta")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", Config.getInstance().getHttp_gateway() + "/api-pregunta/detalle-pregunta"))
+                .defaultUriVariables(Collections.singletonMap("url", Config.getInstance().getHttp_servicio_pregunta() + "/detalle-pregunta"))
                 .build();
         JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
                 .retrieve().bodyToMono(JsonNode.class).block();

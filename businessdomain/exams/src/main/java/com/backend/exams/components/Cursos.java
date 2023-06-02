@@ -17,9 +17,9 @@ public class Cursos {
     public boolean validIdCurso(int id) {
         boolean bandera = true;
         WebClient build = HttpClientCommunication.getInstance().getWebClientBuilder().clientConnector(new ReactorClientHttpConnector(HttpClientCommunication.getInstance().getHttpClient()))
-                .baseUrl(Config.getInstance().getHttp_gateway() + "/api-curso/detalle-curso")
+                .baseUrl(Config.getInstance().getHttp_servicio_curso()+ "/detalle-curso")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", Config.getInstance().getHttp_gateway() + "/api-curso/detalle-curso"))
+                .defaultUriVariables(Collections.singletonMap("url", Config.getInstance().getHttp_servicio_curso() + "/detalle-curso"))
                 .build();
         JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
                 .retrieve().bodyToMono(JsonNode.class).block();
@@ -32,9 +32,9 @@ public class Cursos {
     
     public String getCursoName(int id) {
         WebClient build = HttpClientCommunication.getInstance().getWebClientBuilder().clientConnector(new ReactorClientHttpConnector(HttpClientCommunication.getInstance().getHttpClient()))
-                .baseUrl(Config.getInstance().getHttp_gateway() + "/api-curso/detalle-curso")
+                .baseUrl(Config.getInstance().getHttp_servicio_curso() + "/detalle-curso")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", Config.getInstance().getHttp_gateway() + "/api-curso/detalle-curso"))
+                .defaultUriVariables(Collections.singletonMap("url", Config.getInstance().getHttp_servicio_curso() + "/detalle-curso"))
                 .build();
         JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
                 .retrieve().bodyToMono(JsonNode.class).block();
